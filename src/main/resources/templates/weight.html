@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>体重グラフ</title>
+</head>
+<body>
+    <h1>週ごとと月ごとの体重の変化</h1>
+
+    <div>
+        <button id="weeklyButton">週ごと</button>
+        <button id="monthlyButton">月ごと</button>
+    </div>
+
+    <canvas id="weightChart"></canvas>
+
+    <script>
+        // サンプルデータ（週ごとと月ごとの体重の変化）
+        const weeklyData = {
+            labels: ['週1', '週2', '週3', '週4', '週5', '週6', '週7'],
+            datasets: [
+                {
+                    label: '週ごとの体重',
+                    data: [70, 71, 72, 71.5, 73, 72.5, 74],
+                    borderColor: 'blue',
+                },
+            ],
+        };
+
+        const monthlyData = {
+            labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+            datasets: [
+                {
+                    label: '月ごとの体重',
+                    data: [70, 71, 72, 71.5, 73, 72.5],
+                    borderColor: 'green',
+                },
+            ],
+        };
+
+        const ctx = document.getElementById('weightChart').getContext('2d');
+
+        // 初期表示は週ごとのデータ
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: weeklyData,
+        });
+
+        // ボタンクリック時の処理
+        document.getElementById('weeklyButton').addEventListener('click', () => {
+            chart.data = weeklyData;
+            chart.update();
+        });
+
+        document.getElementById('monthlyButton').addEventListener('click', () => {
+            chart.data = monthlyData;
+            chart.update();
+        });
+    </script>
+</body>
+</html>
