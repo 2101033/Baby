@@ -30,7 +30,7 @@ public class BabyController {
     public String showLoginForm(Model model,BabyNewRegisterForm babyNewRegisterForm) {
 		service.insertUser(babyNewRegisterForm.getMail(),babyNewRegisterForm.getPass(),babyNewRegisterForm.getUser_name(),babyNewRegisterForm.getUser_type());
         //ログイン画面へ遷移。
-        return "insertOk";
+        return "insertOK";
     }
 	
 	@GetMapping("newRegister")
