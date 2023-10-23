@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.notosans {
+	font-family: 'Noto Sans JP', sans-serif;
+}
+
+.logo {
+	text-align: center;
+}
+
+.btn {
+	border-radius: 20px;
+	background: #FCD5FF;
+	font-weight: bold;
+	font-size: 16px;
+	width: 260px;
+	height: 50px;
+	margin: auto;
+}
+
+.inputForm {
+	border-radius: 10px;
+	width: 310px;
+	height: 55px;
+}
+
+.pass {
+	font-size: 12px;
+}
+
+.singup {
+	font-size: 12px;
+}
