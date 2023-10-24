@@ -18,5 +18,5 @@ public class BabyNewRegisterForm {
 	@NotEmpty
 	private String user_name;
 	
-	private int user_type;
+	private Boolean user_type;
 }

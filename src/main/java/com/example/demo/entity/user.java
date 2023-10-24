@@ -15,5 +15,5 @@ public class user {
 	private String user_name;
 	private String user_mail;
 	private String user_pass;
-	private int user_type;
+	private Boolean user_type;
 }

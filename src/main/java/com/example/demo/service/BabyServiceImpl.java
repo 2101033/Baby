@@ -6,18 +6,18 @@ import org.springframework.stereotype.Service;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.demo.entity.user;
-import com.example.demo.repository.User;
+import com.example.demo.repository.UserRepository;
 
 @Service
 public class BabyServiceImpl implements BabyService {
 	@Autowired
-	User userRepository;
+	UserRepository userRepository;
 	
 //	@Autowired
 //	private BCryptPasswordEncoder bcpe;
 	
 	@Override
-	public void insertUser(String mail, String pass, String user_name,int user_type) {
+	public void insertUser(String mail, String pass, String user_name,Boolean user_type) {
 		// パスワードをハッシュ化する
 //	    String encodedPassword = bcpe.encode(pass);
 	    
@@ -31,5 +31,17 @@ public class BabyServiceImpl implements BabyService {
 
 	    // ユーザー情報を保存する
 	    userRepository.save(user);
+	}
+
+	@Override
+	public user getUser(String mail) {
+		user user = userRepository.getUserByEmail(mail);
+		return user;
+	}
+
+	@Override
+	public user getAuthUser(String mail, String pass) {
+		user user = userRepository.getUserByEmailAndPass(mail, DigestUtils.md5Hex(pass));
+		return user;
 	}
 }
