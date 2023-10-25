@@ -3,7 +3,7 @@
 img { 
 	width: 100vw;
 	margin-top: 25%;
-	margin-bottom: 15%;
+	margin-bottom: 10%;
 }
 
 body {
@@ -24,14 +24,22 @@ body {
 	text-align: center;
 }
 
+.inputTxt {
+	margin-right: 45px;
+	margin-left: 45px;
+	text-align: left;
+}
+
 .inputForm {
 	border-radius: 10px;
+	border: 2px solid;
 	width: 310px;
 	height: 55px;
 	margin: 0;
 	padding: 0;
 	padding-left: 3%;
-	margin-bottom: 5%;
+	margin-top: 3px;
+	margin-bottom: 15px;
 }
 
 .btn {
@@ -43,6 +51,7 @@ body {
 	text-align: center;
 	width: 260px;
 	height: 50px;
+	margin-top: 20px;
 	margin-bottom: 5%;
 }
 

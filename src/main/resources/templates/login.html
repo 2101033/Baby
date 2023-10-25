@@ -13,12 +13,16 @@
 	</div>
 	<div class="container">
 		<form action="@{/login}" method="post">
-			<input type="email" name="mail" class="inputForm" placeholder="メールアドレス"><br>
-			<input type="password" name="pass" class="inputForm" placeholder="パスワード"><br>
+			<div class="inputTxt">
+				<label for="email">メールアドレス</label><br>
+				<input type="email" name="mail" class="inputForm" placeholder="メールアドレス"><br>
+				<label for="email">パスワード</label><br>
+				<input type="password" name="pass" class="inputForm" placeholder="パスワード"><br>
+			</div>
 			<button type="submit" class="btn btn-lg my-3">ログイン</button>
 		</form>
-		<a th:href="@{/singup}" class="pass">パスワードを忘れた方はこちら</a><br>
-		<a th:href="@{/singup}" class="signup">新規登録はこちら</a>
+		<a th:href="@{/signup}" class="pass">パスワードを忘れた方はこちら</a><br>
+		<a th:href="@{/signup}" class="signup">新規登録はこちら</a>
 	</div>
 </body>
 </html>
