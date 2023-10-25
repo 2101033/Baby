@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.user;
 import com.example.demo.form.BabyNewRegisterForm;
@@ -83,4 +84,16 @@ public class BabyController {
 		return "index";
 	}
 
+	
+	@PostMapping("newRegiRecord")
+	public String newRegiRecordView(@Validated BabyNewRegisterForm babyNewRegisterForm,
+									BindingResult bindingResult,Model model,@RequestParam String mail,
+									String password,String user_name,Integer record_or_View_num) {
+		
+		model.addAttribute(mail);
+		model.addAttribute(password);
+		model.addAttribute(user_name);
+		model.addAttribute(record_or_View_num);
+		return "newRegiRecord";
+	}
 }
