@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
+<title>ログイン画面</title>
+</head>
+<body>
+	<div class="logo">
+		<img src="/images/icon.png" />
+	</div>
+	<div class="container">
+		<form action="@{/login}" method="post">
+			<div class="inputTxt">
+				<label for="email">メールアドレス</label><br>
+				<input type="email" name="mail" class="inputForm" placeholder="メールアドレス"><br>
+				<label for="email">パスワード</label><br>
+				<input type="password" name="pass" class="inputForm" placeholder="パスワード"><br>
+			</div>
+			<button type="submit" class="btn btn-lg my-3">ログイン</button>
+		</form>
+		<a th:href="@{/signup}" class="pass">パスワードを忘れた方はこちら</a><br>
+		<a th:href="@{/signup}" class="signup">新規登録はこちら</a>
+	</div>
+</body>
+</html>

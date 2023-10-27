@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -107,5 +108,15 @@ public class BabyController {
 		model.addAttribute("user_name",userNewRegisterForm.getUser_name());
 		model.addAttribute("recView",userNewRegisterForm.getUser_type());
 		return "newRegiRecord";
+  }
+	
+	@GetMapping("login")
+	public String loginView() {
+		return "login";
+	}
+	
+	@GetMapping("weight")
+	public String weightView() {
+		return "weight";
 	}
 }
