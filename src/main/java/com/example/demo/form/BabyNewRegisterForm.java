@@ -1,22 +1,14 @@
 package com.example.demo.form;
 
-import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class BabyNewRegisterForm {
-	@NotEmpty
+	private String baby_name;
+	private String birth_year;
+	private String birth_mouth;
+	private String birth_day;
+	private String sex;
+	private String profiel_image;
 	private String mail;
-	@NotEmpty
-	private String pass;
-	@NotEmpty
-	private String conf_user_pass;
-	@NotEmpty
-	private String user_name;
-	
-	private Boolean user_type;
 }

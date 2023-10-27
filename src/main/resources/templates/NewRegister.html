@@ -7,7 +7,7 @@
 <body>
 <h1>新規登録</h1>
 
-  <form th:action="@{/OK}" method="post" th:object="${babyNewRegisterForm}">
+  <form th:action="@{/newRegiRecord}" method="post" th:object="${userNewRegisterForm}">
     <p><input type="text" th:field="*{mail}" placeholder="メールアドレス"></p>
     <p><input type="password" th:field="*{pass}" placeholder="パスワード"></p>
     <p><input type="password" th:field="*{conf_user_pass}" placeholder="パスワード（確認）"></p>

@@ -8,11 +8,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.user;
+import com.example.demo.form.UserNewRegisterForm;
 import com.example.demo.form.BabyNewRegisterForm;
 import com.example.demo.form.LoginForm;
 import com.example.demo.service.BabyService;
@@ -29,20 +30,29 @@ public class BabyController {
 
 	// バリデーションをつける場合に必要になってくる
 	@ModelAttribute
-	public BabyNewRegisterForm setUpWordForm() {
+	public UserNewRegisterForm setUpWordForm() {
+		return new UserNewRegisterForm();
+	}
+	
+	@ModelAttribute
+	public BabyNewRegisterForm setUpBabyNewRegisterForm() {
 		return new BabyNewRegisterForm();
 	}
 
-	@RequestMapping("/OK")
-	public String showLoginForm(Model model, BabyNewRegisterForm babyNewRegisterForm) {
-		service.insertUser(babyNewRegisterForm.getMail(), babyNewRegisterForm.getPass(),
-				babyNewRegisterForm.getUser_name(), babyNewRegisterForm.getUser_type());
+	@PostMapping("/OK")
+	public String showLoginForm(Model model, UserNewRegisterForm userNewRegisterForm,BabyNewRegisterForm babyNewregisterForm) {
+		babyNewregisterForm.setMail(userNewRegisterForm.getMail());
+		service.insertBaby(babyNewregisterForm.getMail(),
+				babyNewregisterForm.getBaby_name(),babyNewregisterForm.getBirth_year(),
+				babyNewregisterForm.getBirth_mouth(),babyNewregisterForm.getBirth_day(),
+				babyNewregisterForm.getSex(),babyNewregisterForm.getProfiel_image());
+		
 		// ログイン画面へ遷移。
 		return "insertOK";
 	}
 
 	@GetMapping("newRegister")
-	public String newRegisterView(@Validated BabyNewRegisterForm babyNewRegisterForm, BindingResult bindingResult,
+	public String newRegisterView(@Validated UserNewRegisterForm babyNewRegisterForm, BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
 			return "NewRegister";
@@ -86,14 +96,16 @@ public class BabyController {
 
 	
 	@PostMapping("newRegiRecord")
-	public String newRegiRecordView(@Validated BabyNewRegisterForm babyNewRegisterForm,
-									BindingResult bindingResult,Model model,@RequestParam String mail,
-									String password,String user_name,Integer record_or_View_num) {
+	public String newRegiRecordView(@Validated UserNewRegisterForm userNewRegisterForm,
+									BindingResult bindingResult,Model model) {
+		service.insertUser(
+		userNewRegisterForm.getMail(), userNewRegisterForm.getPass(),
+		userNewRegisterForm.getUser_name(), userNewRegisterForm.getUser_type());
 		
-		model.addAttribute(mail);
-		model.addAttribute(password);
-		model.addAttribute(user_name);
-		model.addAttribute(record_or_View_num);
+		model.addAttribute("mail",userNewRegisterForm.getMail());
+		model.addAttribute("password",userNewRegisterForm.getPass());
+		model.addAttribute("user_name",userNewRegisterForm.getUser_name());
+		model.addAttribute("recView",userNewRegisterForm.getUser_type());
 		return "newRegiRecord";
 	}
 }
