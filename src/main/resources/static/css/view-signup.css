@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: #FCD5FF;
+	box-sizing: border-box;
+}
+
+img {
+	width: 30vw;
+}
+
+body {
+	background-color: #FEF1FF;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.logo {
+	text-align: center;
+}
+
+.container {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 200px;
+}
+
+.invCode {
+	border-radius: 10px;
+	border: 2px solid;
+	width: 310px;
+	height: 55px;
+	margin: 0;
+	padding: 0;
+	padding-left: 3%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.btn {
+	border: none;
+	border-radius: 30px;
+	background: #FCD5FF;
+	font-weight: bold;
+	font-size: 16px;
+	text-align: center;
+	width: 260px;
+	height: 50px;
+	margin-bottom: 5%;
+}
