@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
 <link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
 <title>ログイン画面</title>
@@ -12,12 +12,13 @@
 		<img src="/images/icon.png" />
 	</div>
 	<div class="container">
-		<form action="@{/login}" method="post">
+		<p th:if="${errMsg}" th:text="${errMsg}" style="color: red;"><!-- エラーメッセージ表示領域（仮） --></p>
+		<form th:action="@{index}" method="post" th:object="${loginForm}">
 			<div class="inputTxt">
 				<label for="email">メールアドレス</label><br>
-				<input type="email" name="mail" class="inputForm" placeholder="メールアドレス"><br>
+				<input type="email" name="mail" class="inputForm" placeholder="メールアドレス" th:field="*{email}"><br>
 				<label for="email">パスワード</label><br>
-				<input type="password" name="pass" class="inputForm" placeholder="パスワード"><br>
+				<input type="password" name="pass" class="inputForm" placeholder="パスワード" th:field="*{password}"><br>
 			</div>
 			<button type="submit" class="btn btn-lg my-3">ログイン</button>
 		</form>
