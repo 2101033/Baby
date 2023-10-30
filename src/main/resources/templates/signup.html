@@ -16,26 +16,33 @@
 	</header>
 	<!-- ここまで -->
 	<div class="container">
-		<form action="@{/signup}" method="post">
+		<form th:action="@{/newRegiRecord}" method="post" th:object="${userNewRegisterForm}">
 			<div class="inputTxt">
 				<label for="email">メールアドレス</label>
-				<input type="email" name="mail" class="inputForm" placeholder="メールアドレス"><br>
+				<input type="email" th:field="*{mail}" class="inputForm" placeholder="メールアドレス"><br>
 				<label for="pass">パスワード</label><br>
-				<input type="password" name="pass" class="inputForm" placeholder="パスワード"><br>
+				<input type="password" th:field="*{pass}" class="inputForm" placeholder="パスワード"><br>
 				<label for="checkpass" class="labeltxt">パスワードの確認</label><br>
-				<input type="password" name="checkpass" class="inputForm" placeholder="パスワードの確認"><br>
+				<input type="password" th:field="*{conf_user_pass}" class="inputForm" placeholder="パスワードの確認"><br>
 				<label for="userName">ユーザー名</label><br>
-				<input type="text" name="userName" class="inputForm" placeholder="ユーザー名"><br>
+				<input type="text" name="userName" class="inputForm" placeholder="ユーザー名" th:field="*{user_name}" ><br>
 				<label for="usertype" class="labeltxt">あなたはどちら側ですか？</label><br>
 				<div class="select-box">
-					<select class="seltype" name="usertype">
+					<select class="seltype" th:field="*{user_type}">
 						<option value="" selected hidden>選択してください</option>
-						<option value="host">記録</option>
-						<option value="view">閲覧</option>
+						<option value="0">記録</option>
+						<option value="1">閲覧</option>
 					</select>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-lg my-3">次へ</button>
+			
+			
+			<!-- エラー文表示 -->
+		<ul th:if="${#fields.hasErrors('*')}">
+			<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+		</ul>
+		
 		</form>
 		<a th:href="@{/login}" class="login">既にアカウントをお持ちの方はこちら</a>
 	</div>
