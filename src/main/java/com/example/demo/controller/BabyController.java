@@ -57,9 +57,9 @@ public class BabyController {
 	public String newRegisterView(@Validated UserNewRegisterForm babyNewRegisterForm, BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
-			return "NewRegister";
+			return "signup";
 		}
-		return "NewRegister";
+		return "signup";
 	}
 
 	/**
@@ -107,8 +107,8 @@ public class BabyController {
 		model.addAttribute("user_name", userNewRegisterForm.getUser_name());
 		model.addAttribute("recView", userNewRegisterForm.getUser_type());
 		return "newRegiRecord";
-	}
-
+  }
+  
 	@GetMapping("weight")
 	public String weightView() {
 		return "weight";

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link th:href="@{/css/host-signup.css}" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
+<title>新規登録（記録）</title>
+</head>
+<body>
+	<!-- ヘッダー -->
+	<header class="header">
+		<div class="logo">
+			<img src="/images/icon.png" />		
+		</div>
+	</header>
+	<!-- ここまで -->
+	<div class="container">
+		<form action="@{/host_signup}" method="post">
+			<div class="inputTxt">
+				<label for="name">おなまえ</label>
+				<input type="text" name="baby" class="inputForm" placeholder="おなまえを入力してください"><br>
+				<label for="birth">生年月日</label>
+				<input type="date" name="birth" class="inputForm"><br>
+				<label for="sex">性別</label><br>
+				<input type="radio" name="sex" value="男">男の子<br>
+				<input type="radio" name="sex" value="女">女の子<br>
+				<input type="file" id="fileImage" accept=".jpg, .jpeg, .png">
+				<div class="input-group">
+					<input type="text" id="photoCover" class="form-control">
+					<span class="input-group-btn"><button type="button" class="button" onclick="$('input[id=fileImage]').click();">選択</button></span>
+				</div>
+			</div>
+			<button type="submit" class="btn">新規登録</button>
+		</form>
+	</div>
+	
+	<script>
+		$('input[id=fileImage]').change(function(){
+			$('#photoCover').val($(this).val());
+		});
+	</script>
+</body>
+</html>
