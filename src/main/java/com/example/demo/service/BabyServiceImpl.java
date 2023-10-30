@@ -22,13 +22,13 @@ public class BabyServiceImpl implements BabyService {
 //	private BCryptPasswordEncoder bcpe;
 	
 	@Override
-	public void insertBaby(String user_mail,String baby_name,String birth_year,String birth_mouth,String birth_day,
+	public void insertBaby(String user_mail,String baby_name,String birth,
 			String sex,String profiel_image) {
 		user user = userRepository.getBabyUserId(user_mail);
 		baby baby = new baby();
 		baby.setBaby_id(null);
 	    baby.setBaby_name(baby_name);
-	    baby.setBirth(birth_year+"-"+birth_mouth+"-"+birth_day);
+	    baby.setBirth(birth);
 	    baby.setSex(sex);
 	    baby.setProfiel_image(profiel_image);
 	    baby.setUser_id(user.getUser_id());

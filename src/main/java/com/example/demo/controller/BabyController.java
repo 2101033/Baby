@@ -45,8 +45,7 @@ public class BabyController {
 			BabyNewRegisterForm babyNewregisterForm) {
 		babyNewregisterForm.setMail(userNewRegisterForm.getMail());
 		service.insertBaby(babyNewregisterForm.getMail(), babyNewregisterForm.getBaby_name(),
-				babyNewregisterForm.getBirth_year(), babyNewregisterForm.getBirth_mouth(),
-				babyNewregisterForm.getBirth_day(), babyNewregisterForm.getSex(),
+				babyNewregisterForm.getBirth(),babyNewregisterForm.getSex(),
 				babyNewregisterForm.getProfiel_image());
 
 		// ログイン画面へ遷移。
@@ -61,6 +60,13 @@ public class BabyController {
 		}
 		return "signup";
 	}
+	
+//	@GetMapping("hostsignup")
+//	public String hostsignupView(
+//			Model model) {
+//		
+//		return "host-signup";
+//	}
 
 	/**
 	 * ログイン画面
@@ -97,16 +103,17 @@ public class BabyController {
 	}
 
 	@PostMapping("newRegiRecord")
-	public String newRegiRecordView(@Validated UserNewRegisterForm userNewRegisterForm, BindingResult bindingResult,
-			Model model) {
-		service.insertUser(userNewRegisterForm.getMail(), userNewRegisterForm.getPass(),
-				userNewRegisterForm.getUser_name(), userNewRegisterForm.getUser_type());
-
-		model.addAttribute("mail", userNewRegisterForm.getMail());
-		model.addAttribute("password", userNewRegisterForm.getPass());
-		model.addAttribute("user_name", userNewRegisterForm.getUser_name());
-		model.addAttribute("recView", userNewRegisterForm.getUser_type());
-		return "newRegiRecord";
+	public String newRegiRecordView(@Validated UserNewRegisterForm userNewRegisterForm,
+									BindingResult bindingResult,Model model) {
+		service.insertUser(
+		userNewRegisterForm.getMail(), userNewRegisterForm.getPass(),
+		userNewRegisterForm.getUser_name(), userNewRegisterForm.getUser_type());
+		
+		model.addAttribute("mail",userNewRegisterForm.getMail());
+		model.addAttribute("password",userNewRegisterForm.getPass());
+		model.addAttribute("user_name",userNewRegisterForm.getUser_name());
+		model.addAttribute("recView",userNewRegisterForm.getUser_type());
+		return "host-signup";
   }
   
 	@GetMapping("weight")

@@ -16,16 +16,20 @@
 	</header>
 	<!-- ここまで -->
 	<div class="container">
-		<form action="@{/host_signup}" method="post">
+		<form th:action="@{/OK}" method="post" th:object="${babyNewRegisterForm}">
+			<input type="hidden" name="mail" th:value="${mail}">
+			<input type="hidden" th:value="${password}">
+			<input type="hidden" th:value="${user_name}">
+			<input type="hidden" th:value="${recView}">
 			<div class="inputTxt">
 				<label for="name">おなまえ</label>
-				<input type="text" name="baby" class="inputForm" placeholder="おなまえを入力してください"><br>
+				<input type="text" th:field="*{baby_name}" class="inputForm" placeholder="おなまえを入力してください"><br>
 				<label for="birth">生年月日</label>
 				<input type="date" name="birth" class="inputForm"><br>
 				<label for="sex">性別</label><br>
-				<input type="radio" name="sex" value="男">男の子<br>
-				<input type="radio" name="sex" value="女">女の子<br>
-				<input type="file" id="fileImage" accept=".jpg, .jpeg, .png" />
+				<input type="radio" th:field="*{sex}" value="男">男の子<br>
+				<input type="radio" th:field="*{sex}" value="女">女の子<br>
+				<input type="file" th:field="*{profiel_image}" id="fileImage" accept=".jpg, .jpeg, .png" />
 			</div>
 			<button type="submit" class="btn">新規登録</button>
 		</form>

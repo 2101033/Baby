@@ -8,8 +8,7 @@ public interface BabyService {
 	public void insertUser(String mail, String pass, String user_name,Boolean user_type
 			);
 	
-	public void insertBaby(String user_mail,String baby_name,String birth_year,String birth_mouth,String birth_day,
-			String sex,String profiel_image);
+	public void insertBaby(String user_mail,String baby_name,String birth,String sex,String profiel_image);
 	/**
 	 * メールアドレスからユーザー取得
 	 * @param mail
