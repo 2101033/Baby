@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link th:href="@{/css/view-signup.css}" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
+<title>新規登録（閲覧）</title>
+</head>
+<body>
+	<!-- ヘッダー -->
+	<header class="header">
+		<div class="logo">
+			<img src="/images/icon.png" />		
+		</div>
+	</header>
+	<!-- ここまで -->
+	<div class="container">
+		<form action="@{/view_signup}" method="post">
+			<label for="invitation">招待コードを入力してください</label>
+			<input type="text" name="code" class="invCode" placeholder="招待コード"><br>
+			<button type="submit" class="btn">新規登録</button>
+		</form>
+	</div>
+</body>
+</html>
