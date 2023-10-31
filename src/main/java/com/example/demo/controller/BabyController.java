@@ -49,7 +49,7 @@ public class BabyController {
 
 	@PostMapping("/OK")
 	public String showLoginForm(Model model, UserNewRegisterForm userNewRegisterForm,
-			BabyNewRegisterForm babyNewregisterForm) {
+			BabyNewRegisterForm babyNewregisterForm) throws IOException  {
 		babyNewregisterForm.setMail(userNewRegisterForm.getMail());
 		service.insertBaby(babyNewregisterForm.getMail(), babyNewregisterForm.getBaby_name(),
 				babyNewregisterForm.getBirth(),babyNewregisterForm.getSex(),

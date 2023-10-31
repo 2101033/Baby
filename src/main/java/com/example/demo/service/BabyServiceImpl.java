@@ -1,8 +1,14 @@
 package com.example.demo.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.UUID;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.baby;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,16 +29,22 @@ public class BabyServiceImpl implements BabyService {
 	
 	@Override
 	public void insertBaby(String user_mail,String baby_name,String birth,
-			String sex,String profiel_image) {
+			String sex,MultipartFile profiel_image) throws IOException  {
+		String UId = UUID.randomUUID().toString();
+		
+		
 		user user = userRepository.getBabyUserId(user_mail);
 		baby baby = new baby();
 		baby.setBaby_id(null);
 	    baby.setBaby_name(baby_name);
 	    baby.setBirth(birth);
 	    baby.setSex(sex);
-	    baby.setProfiel_image(profiel_image);
+	    baby.setProfiel_image(UId+profiel_image.getOriginalFilename());
 	    baby.setUser_id(user.getUser_id());
 	    
+	    Path dst = Path.of("src/main/resources/static/images/babys/", UId + profiel_image.getOriginalFilename());
+		Files.copy(profiel_image.getInputStream(), dst);
+		
 	    babyRepository.save(baby);
 	}
 	
