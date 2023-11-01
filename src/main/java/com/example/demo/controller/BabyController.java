@@ -91,8 +91,12 @@ public class BabyController {
 	 * @return 成功した場合はindexへ遷移し、失敗した場合はloginへリダイレクトする。
 	 */
 	@PostMapping("index")
-	public String login(LoginForm loginForm, RedirectAttributes redirectAttributes, Model model) {
-
+	public String login(@Validated LoginForm loginForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			return "login";
+		}
+		
 		user user = service.getAuthUser(loginForm.getEmail(), loginForm.getPassword());
 //		model.addAttribute("user", user);
 
