@@ -60,11 +60,8 @@ public class BabyController {
 	}
 
 	@GetMapping("newRegister")
-	public String newRegisterView(@Validated UserNewRegisterForm babyNewRegisterForm, BindingResult bindingResult,
+	public String newRegisterView(UserNewRegisterForm babyNewRegisterForm, BindingResult bindingResult,
 			Model model) {
-		if (bindingResult.hasErrors()) {
-			return "signup";
-		}
 		return "signup";
 	}
 	
@@ -112,6 +109,10 @@ public class BabyController {
 	@PostMapping("newRegiRecord")
 	public String newRegiRecordView(@Validated UserNewRegisterForm userNewRegisterForm,
 									BindingResult bindingResult,Model model) {
+		if (bindingResult.hasErrors()) {
+			return "signup";
+		}
+	
 		service.insertUser(
 		userNewRegisterForm.getMail(), userNewRegisterForm.getPass(),
 		userNewRegisterForm.getUser_name(), userNewRegisterForm.getUser_type());
