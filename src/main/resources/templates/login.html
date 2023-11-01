@@ -13,7 +13,7 @@
 	</div>
 	<div class="container">
 		<p th:if="${errMsg}" th:text="${errMsg}" style="color: red;"><!-- エラーメッセージ表示領域（仮） --></p>
-		<form th:action="@{index}" method="post" th:object="${userNewRegisterFrom}">
+		<form th:action="@{index}" method="post" th:object="${loginForm}">
 			<div class="inputTxt">
 				<label for="email">メールアドレス</label><br>
 				<input type="email" name="mail" class="inputForm" placeholder="メールアドレス" th:field="*{email}"><br>
