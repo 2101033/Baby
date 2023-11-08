@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.entity.user;
 import com.example.demo.form.UserNewRegisterForm;
 import com.example.demo.form.BabyNewRegisterForm;
+import com.example.demo.form.InvNewRegisterForm;
 import com.example.demo.form.LoginForm;
 import com.example.demo.service.BabyService;
 
@@ -75,6 +76,25 @@ public class BabyController {
 			Model model) {
 		
 		return "host-signup";
+	}
+	
+	@GetMapping("view_signup")
+	public String viewsignupView(InvNewRegisterForm invNewRegisterForm, BindingResult bindingResult,
+			Model model) {
+		
+		return "view-signup";
+	}
+	
+	@PostMapping("/ok")
+	public String showLoginForm(@Validated InvNewRegisterForm invNewregisterForm, BindingResult bindingResult,
+								Model model, UserNewRegisterForm userNewRegisterForm) throws IOException  {
+		
+		if (bindingResult.hasErrors()) {
+			return "view-signup";
+		}
+
+		// ログイン画面へ遷移。
+		return "insertOK";
 	}
 
 	/**

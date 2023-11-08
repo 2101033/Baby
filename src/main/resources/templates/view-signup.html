@@ -16,9 +16,19 @@
 	</header>
 	<!-- ここまで -->
 	<div class="container">
-		<form action="@{/view_signup}" method="post">
-			<label for="invitation">招待コードを入力してください</label>
-			<input type="text" name="code" class="invCode" placeholder="招待コード"><br>
+		<form th:action="@{/ok}" th:object="${invNewRegisterForm}" method="post">
+			<input type="hidden" name="mail" th:value="${mail}">
+			<input type="hidden" th:value="${password}">
+			<input type="hidden" th:value="${user_name}">
+			<input type="hidden" th:value="${recView}">
+			<!-- エラーメッセージ表示 -->
+			<ul th:if="${#fields.hasErrors('*')}">
+				<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
+			<div class="inputTxt">
+				<label for="invitation">招待コード</label><br>
+				<input type="text" th:field="*{code}" class="invCode" placeholder="招待コード"><br>
+			</div>
 			<button type="submit" class="btn">新規登録</button>
 		</form>
 	</div>
