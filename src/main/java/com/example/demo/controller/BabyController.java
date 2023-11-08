@@ -48,8 +48,13 @@ public class BabyController {
 	}
 
 	@PostMapping("/OK")
-	public String showLoginForm(Model model, UserNewRegisterForm userNewRegisterForm,
-			BabyNewRegisterForm babyNewregisterForm) throws IOException  {
+	public String showLoginForm(@Validated BabyNewRegisterForm babyNewregisterForm, BindingResult bindingResult,
+								Model model, UserNewRegisterForm userNewRegisterForm) throws IOException  {
+		
+		if (bindingResult.hasErrors()) {
+			return "host-signup";
+		}
+		
 		babyNewregisterForm.setMail(userNewRegisterForm.getMail());
 		service.insertBaby(babyNewregisterForm.getMail(), babyNewregisterForm.getBaby_name(),
 				babyNewregisterForm.getBirth(),babyNewregisterForm.getSex(),
@@ -65,12 +70,12 @@ public class BabyController {
 		return "signup";
 	}
 	
-//	@GetMapping("hostsignup")
-//	public String hostsignupView(
-//			Model model) {
-//		
-//		return "host-signup";
-//	}
+	@GetMapping("host_signup")
+	public String hostsignupView(
+			Model model) {
+		
+		return "host-signup";
+	}
 
 	/**
 	 * ログイン画面
