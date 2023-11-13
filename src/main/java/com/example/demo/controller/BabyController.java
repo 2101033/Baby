@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 //import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.baby;
 import com.example.demo.entity.user;
 import com.example.demo.form.UserNewRegisterForm;
 import com.example.demo.form.BabyNewRegisterForm;
@@ -58,7 +61,8 @@ public class BabyController {
 		// ログイン画面へ遷移。
 		return "insertOK";
 	}
-
+	
+	//新規登録画面へ
 	@GetMapping("newRegister")
 	public String newRegisterView(@Validated UserNewRegisterForm babyNewRegisterForm, BindingResult bindingResult,
 			Model model) {
@@ -68,12 +72,32 @@ public class BabyController {
 		return "signup";
 	}
 	
-//	@GetMapping("hostsignup")
-//	public String hostsignupView(
-//			Model model) {
-//		
-//		return "host-signup";
-//	}
+	//日記記録画面へ
+	@GetMapping("diary_record")
+	public String diary_recordView(Model model) {
+		// 現在の日時を取得
+		LocalDateTime datetime = LocalDateTime.now();
+		
+		//表示データフォーマットを指定
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd(E)");
+		
+		 // フォーマットして文字列に変換
+		String formattedDate = datetime.format(formatter);
+		
+		//セッションを取得
+		Object user = session.getAttribute("user");
+		
+		if (user != null) {
+	        String email = ((user)user).getUser_mail(); // ユーザーオブジェクトからメールアドレスを取得
+	        model.addAttribute("nowtime", formattedDate);
+	        baby list = service.babyfindAll(email); // メールアドレスを渡す
+	        model.addAttribute("babyList", list);
+	    } else {
+	        // ログインしていない場合の処理
+	        return "redirect:login";
+	    }
+		return "diary_record";
+	}
 
 	/**
 	 * ログイン画面
