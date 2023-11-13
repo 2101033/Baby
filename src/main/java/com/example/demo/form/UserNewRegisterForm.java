@@ -1,5 +1,6 @@
 package com.example.demo.form;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +20,13 @@ public class UserNewRegisterForm {
 	private String user_name;
 	
 	private Boolean user_type;
+	
+	@AssertTrue
+	public boolean isPaswordValid() { 
+		if(pass == null || pass.isEmpty()) {
+			return true;
+		}
+	return pass.equals(conf_user_pass);
+	}
 }
+

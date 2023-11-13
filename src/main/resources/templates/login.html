@@ -14,6 +14,10 @@
 	<div class="container">
 		<p th:if="${errMsg}" th:text="${errMsg}" style="color: red;"><!-- エラーメッセージ表示領域（仮） --></p>
 		<form th:action="@{index}" method="post" th:object="${loginForm}">
+		<!-- エラーメッセージ表示 -->
+			<ul th:if="${#fields.hasErrors('*')}">
+				<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
 			<div class="inputTxt">
 				<label for="email">メールアドレス</label><br>
 				<input type="email" name="mail" class="inputForm" placeholder="メールアドレス" th:field="*{email}"><br>

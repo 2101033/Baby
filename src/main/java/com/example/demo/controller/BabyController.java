@@ -26,6 +26,7 @@ import com.example.demo.entity.baby;
 import com.example.demo.entity.user;
 import com.example.demo.form.UserNewRegisterForm;
 import com.example.demo.form.BabyNewRegisterForm;
+import com.example.demo.form.InvNewRegisterForm;
 import com.example.demo.form.LoginForm;
 import com.example.demo.service.BabyService;
 
@@ -51,8 +52,13 @@ public class BabyController {
 	}
 
 	@PostMapping("/OK")
-	public String showLoginForm(Model model, UserNewRegisterForm userNewRegisterForm,
-			BabyNewRegisterForm babyNewregisterForm) throws IOException  {
+	public String showLoginForm(@Validated BabyNewRegisterForm babyNewregisterForm, BindingResult bindingResult,
+								Model model, UserNewRegisterForm userNewRegisterForm) throws IOException  {
+		
+		if (bindingResult.hasErrors()) {
+			return "host-signup";
+		}
+		
 		babyNewregisterForm.setMail(userNewRegisterForm.getMail());
 		service.insertBaby(babyNewregisterForm.getMail(), babyNewregisterForm.getBaby_name(),
 				babyNewregisterForm.getBirth(),babyNewregisterForm.getSex(),
@@ -64,11 +70,8 @@ public class BabyController {
 	
 	//新規登録画面へ
 	@GetMapping("newRegister")
-	public String newRegisterView(@Validated UserNewRegisterForm babyNewRegisterForm, BindingResult bindingResult,
+	public String newRegisterView(UserNewRegisterForm babyNewRegisterForm, BindingResult bindingResult,
 			Model model) {
-		if (bindingResult.hasErrors()) {
-			return "signup";
-		}
 		return "signup";
 	}
 	
@@ -98,6 +101,31 @@ public class BabyController {
 	    }
 		return "diary_record";
 	}
+	@GetMapping("host_signup")
+	public String hostsignupView(
+			Model model) {
+		
+		return "host-signup";
+	}
+	
+	@GetMapping("view_signup")
+	public String viewsignupView(InvNewRegisterForm invNewRegisterForm, BindingResult bindingResult,
+			Model model) {
+		
+		return "view-signup";
+	}
+	
+	@PostMapping("/ok")
+	public String showLoginForm(@Validated InvNewRegisterForm invNewregisterForm, BindingResult bindingResult,
+								Model model, UserNewRegisterForm userNewRegisterForm) throws IOException  {
+		
+		if (bindingResult.hasErrors()) {
+			return "view-signup";
+		}
+
+		// ログイン画面へ遷移。
+		return "insertOK";
+	}
 
 	/**
 	 * ログイン画面
@@ -118,8 +146,12 @@ public class BabyController {
 	 * @return 成功した場合はindexへ遷移し、失敗した場合はloginへリダイレクトする。
 	 */
 	@PostMapping("index")
-	public String login(LoginForm loginForm, RedirectAttributes redirectAttributes, Model model) {
-
+	public String login(@Validated LoginForm loginForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+		
+		if (bindingResult.hasErrors()) {
+			return "login";
+		}
+		
 		user user = service.getAuthUser(loginForm.getEmail(), loginForm.getPassword());
 //		model.addAttribute("user", user);
 
@@ -136,6 +168,10 @@ public class BabyController {
 	@PostMapping("newRegiRecord")
 	public String newRegiRecordView(@Validated UserNewRegisterForm userNewRegisterForm,
 									BindingResult bindingResult,Model model) {
+		if (bindingResult.hasErrors()) {
+			return "signup";
+		}
+	
 		service.insertUser(
 		userNewRegisterForm.getMail(), userNewRegisterForm.getPass(),
 		userNewRegisterForm.getUser_name(), userNewRegisterForm.getUser_type());

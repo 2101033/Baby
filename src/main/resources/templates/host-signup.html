@@ -21,15 +21,22 @@
 			<input type="hidden" th:value="${password}">
 			<input type="hidden" th:value="${user_name}">
 			<input type="hidden" th:value="${recView}">
+			<!-- エラーメッセージ表示 -->
+			<ul th:if="${#fields.hasErrors('*')}">
+				<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
 			<div class="inputTxt">
 				<label for="name">おなまえ</label>
 				<input type="text" th:field="*{baby_name}" class="inputForm" placeholder="おなまえを入力してください"><br>
 				<label for="birth">生年月日</label>
-				<input type="date" name="birth" class="inputForm"><br>
+				<input type="date" th:field="*{birth}" name="birth" class="inputForm"><br>
 				<label for="sex">性別</label><br>
 				<input type="radio" th:field="*{sex}" value="男">男の子<br>
 				<input type="radio" th:field="*{sex}" value="女">女の子<br>
 				<input type="file" th:field="*{profiel_image}" id="fileImage" accept=".jpg, .jpeg, .png" />
+				<label for="fileImage" class="fileLabel">
+					写真を選択してください
+				</label>
 			</div>
 			<button type="submit" class="btn">新規登録</button>
 		</form>

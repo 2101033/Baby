@@ -64,3 +64,14 @@ body {
 	font-size: 12px;
 	color:inherit
 }
+
+ul {
+	margin-top: -20px;
+	padding-bottom: 10px; 
+}
+
+li {
+	display: block;
+	padding-right: 40px;
+	color: red;
+}

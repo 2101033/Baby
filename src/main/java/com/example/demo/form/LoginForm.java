@@ -8,7 +8,7 @@ public class LoginForm {
 
 	@NotEmpty
 	private String email;
-	
+	@NotEmpty
 	private String password;
 	
 }
