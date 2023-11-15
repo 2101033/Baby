@@ -28,8 +28,7 @@ public class BabyServiceImpl implements BabyService {
 //	private BCryptPasswordEncoder bcpe;
 	
 	@Override//ユーザー新規登録
-	public void insertUser(String mail, String pass, String user_name,Boolean user_type
-			) {
+	public void insertUser(String mail, String pass, String user_name,Boolean user_type) {
 		// パスワードをハッシュ化する
 //	    String encodedPassword = bcpe.encode(pass);
 	    

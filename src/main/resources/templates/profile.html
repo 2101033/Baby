@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>プロフィール画面</title>
+</head>
+<body>
+
+	<h2>テスト用プロフィール画面</h2>
+	
+	<div th:each="user : ${userList}">
+	メールアドレス [[${user.user_mail}]] <br>
+	パスワード    ●●●●●●●●●<br>
+	ユーザー名   [[${user.user_name}]] <br>
+	</div>
+	
+	<input type="submit" name="" value="編集">
+</body>
+</html>

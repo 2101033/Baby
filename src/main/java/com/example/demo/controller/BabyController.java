@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
@@ -75,6 +77,43 @@ public class BabyController {
 		return "signup";
 	}
 	
+	@GetMapping("testHome")
+	public String testHomeView(Model model) {
+		//セッションを取得
+		Object user = session.getAttribute("user");
+		
+		// 現在の日付を取得する
+        LocalDate currentDate = LocalDate.now();
+		
+		// データフォーマットを指定
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		if (user != null) {
+	        String email = ((user)user).getUser_mail(); // ユーザーオブジェクトからメールアドレスを取得
+	        baby list = service.babyfindAll(email); // メールアドレスを渡してbabyテーブルの情報取得
+	        LocalDate birthDate = LocalDate.parse(list.getBirth(), formatter);//listから取得した誕生日をLocalDateに変換する
+	        
+	     //  生後何日かを計算する
+	        long after_birth =Period.between(birthDate, currentDate).getDays();
+	        
+	     //何歳何カ月何日目かを計算する
+	        Period period = Period.between(birthDate, currentDate);
+	        int year = period.getYears();
+	        int month = period.getMonths();
+	        int day = period.getDays();
+	      
+	      
+	        model.addAttribute("babyList", list);
+	        model.addAttribute("afterBirth",after_birth);
+	        model.addAttribute("birthYear", year);
+	        model.addAttribute("birthMonth", month);
+	        model.addAttribute("birthDay", day);
+	    } else {
+	        // ログインしていない場合の処理
+	        return "redirect:login";
+	    }
+		return "testHome";
+	}
 	//日記記録画面へ
 	@GetMapping("diary_record")
 	public String diary_recordView(Model model) {
@@ -93,7 +132,7 @@ public class BabyController {
 		if (user != null) {
 	        String email = ((user)user).getUser_mail(); // ユーザーオブジェクトからメールアドレスを取得
 	        model.addAttribute("nowtime", formattedDate);
-	        baby list = service.babyfindAll(email); // メールアドレスを渡す
+	        baby list = service.babyfindAll(email); // メールアドレスを渡してbabyテーブルの情報取得
 	        model.addAttribute("babyList", list);
 	    } else {
 	        // ログインしていない場合の処理
@@ -101,6 +140,44 @@ public class BabyController {
 	    }
 		return "diary_record";
 	}
+	
+	//プロフィール画面へ
+	@GetMapping("profile")
+	public String profileView(Model model) {
+		
+		//セッションを取得
+		Object user = session.getAttribute("user");
+		
+		if (user != null) {
+	        String email = ((user)user).getUser_mail(); // ユーザーオブジェクトからメールアドレスを取得
+	        user list = service.getUser(email); // メールアドレスを渡してbabyテーブルの情報取得
+	        model.addAttribute("userList", list);
+	    } else {
+	        // ログインしていない場合の処理
+	        return "redirect:login";
+	    }
+		return "profile";
+	}
+	
+	//赤ちゃん情報画面へ
+		@GetMapping("babyinfo")
+		public String babyinfoView(Model model) {
+			
+			//セッションを取得
+			Object user = session.getAttribute("user");
+			
+			if (user != null) {
+		        String email = ((user)user).getUser_mail(); // ユーザーオブジェクトからメールアドレスを取得
+		        baby list = service.babyfindAll(email); // メールアドレスを渡してbabyテーブルの情報取得
+		        model.addAttribute("babyList", list);
+		    } else {
+		        // ログインしていない場合の処理
+		        return "redirect:login";
+		    }
+			return "baby_info";
+		}
+	
+	
 	@GetMapping("host_signup")
 	public String hostsignupView(
 			Model model) {
@@ -115,6 +192,7 @@ public class BabyController {
 		return "view-signup";
 	}
 	
+	//閲覧者側登録画面（招待コード）
 	@PostMapping("/ok")
 	public String showLoginForm(@Validated InvNewRegisterForm invNewregisterForm, BindingResult bindingResult,
 								Model model, UserNewRegisterForm userNewRegisterForm) throws IOException  {

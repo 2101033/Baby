@@ -10,8 +10,7 @@ import com.example.demo.entity.user;
 
 public interface BabyService {
 	//ユーザー新規登録
-	public void insertUser(String mail, String pass, String user_name,Boolean user_type
-			);
+	public void insertUser(String mail, String pass, String user_name,Boolean user_type);
 	
 	//赤ちゃん新規登録
 	public void insertBaby(String user_mail,String baby_name,String birth,String sex,MultipartFile multipartFile)throws IOException;
