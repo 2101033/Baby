@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 public class InvNewRegisterForm {
 	@NotEmpty
 	private String code;
+	private String mail;
 }
