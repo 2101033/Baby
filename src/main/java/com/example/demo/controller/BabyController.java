@@ -277,4 +277,9 @@ public class BabyController {
 		Files.copy(file.getInputStream(), dst);
 		return "redirect:/uploadtest";
 	}
+	
+	@GetMapping("viewhome")
+	public String viewHome() {
+		return "view-home";
+	}
 }
