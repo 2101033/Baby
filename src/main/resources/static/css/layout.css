@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+footer {
+	border-top: 1px solid gray;
+}
+
+nav>ul {
+	display: flex;
+	list-style: none;
+	padding: 0;
+	justify-content: space-around;
+}
