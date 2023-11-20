@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +96,8 @@ public class BabyController {
 	        LocalDate birthDate = LocalDate.parse(list.getBirth(), formatter);//listから取得した誕生日をLocalDateに変換する
 	        
 	     //  生後何日かを計算する
-	        long after_birth =Period.between(birthDate, currentDate).getDays();
+//	        long after_birth =Period.between(birthDate, currentDate).getDays();
+	        long after_birth = ChronoUnit.DAYS.between(birthDate, currentDate);
 	        
 	     //何歳何カ月何日目かを計算する
 	        Period period = Period.between(birthDate, currentDate);
