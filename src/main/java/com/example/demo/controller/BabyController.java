@@ -8,12 +8,10 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Calendar;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -28,10 +26,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.baby;
 import com.example.demo.entity.user;
-import com.example.demo.form.UserNewRegisterForm;
 import com.example.demo.form.BabyNewRegisterForm;
 import com.example.demo.form.InvNewRegisterForm;
 import com.example.demo.form.LoginForm;
+import com.example.demo.form.UserNewRegisterForm;
 import com.example.demo.service.BabyService;
 
 import jakarta.servlet.http.HttpSession;
@@ -281,8 +279,24 @@ public class BabyController {
 		return "redirect:/uploadtest";
 	}
 	
+
 	@GetMapping("viewhome")
 	public String viewHome() {
 		return "view-home";
+	}
+	
+	@GetMapping("diary_insert")
+	public String diary_insert() {
+		return "diary_insert";
+	}
+	
+	@GetMapping("diary")
+	public String diary() {
+		return "diary";
+	}
+	
+	@GetMapping("diary_kalendar")
+	public String diary_kalendar() {
+		return "diary_kalendar";
 	}
 }
