@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>テスト用ホーム画面</title>
+</head>
+<body>
+	<h2>テスト用ホーム画面</h2>
+	<div th:each="baby : ${babyList}">
+	
+	おなまえ [[${baby.baby_name}]]<br>
+	
+	<img alt="赤ちゃんの画像が表示される" th:src="@{/images/babys/{filename}(filename=${baby.profiel_image})}" /><br>
+	
+	生後<br>
+	[[${afterBirth}]]日<br>
+	
+	[[${birthYear}]]歳<br>
+	[[${birthMonth}]]カ月[[${birthDay}]]日
+	
+	</div>
+</body>
+</html>

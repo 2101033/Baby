@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link th:href="@{/css/view-signup.css}" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
+<title>新規登録（閲覧）</title>
+</head>
+<body>
+	<!-- ヘッダー -->
+	<header class="header">
+		<div class="logo">
+			<img src="/images/icon.png" />		
+		</div>
+	</header>
+	<!-- ここまで -->
+	<div class="container">
+		<form th:action="@{/ok}" th:object="${invNewRegisterForm}" method="post">
+			<input type="hidden" name="mail" th:value="${mail}">
+			<input type="hidden" th:value="${password}">
+			<input type="hidden" th:value="${user_name}">
+			<input type="hidden" th:value="${recView}">
+			<!-- エラーメッセージ表示 -->
+			<ul th:if="${#fields.hasErrors('*')}">
+				<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
+			<div class="inputTxt">
+				<label for="invitation">招待コード</label><br>
+				<input type="text" th:field="*{code}" class="invCode" placeholder="招待コード"><br>
+			</div>
+			<button type="submit" class="btn">新規登録</button>
+		</form>
+	</div>
+</body>
+</html>

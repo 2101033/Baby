@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>テスト用日記記録画面</title>
+</head>
+<body>
+	<h2>日記</h2>
+	<p>[[${nowtime}]]</p>
+	<div th:each="baby : ${babyList}">
+	<img alt="赤ちゃんの画像が表示される" th:src="@{/images/babys/{filename}(filename=${baby.profiel_image})}" />
+	</div>
+</body>
+</html>

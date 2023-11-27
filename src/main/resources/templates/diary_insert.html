@@ -1,15 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link th:href="@{/css/diary_insert.css}" rel="stylesheet" type="text/css" />
 <title>日記記入</title>
 </head>
 <body>
-<p>日付</p>
+<label for="date">日付</label><br>
+<input type="date" id="date" name="日付">
 <p>日記</p>
 <input type="text" name="diarytext"><br>
 <p>画像</p>
-<button type="submit" id="complete">完了</button>
-<button type="submit" id="delete">削除</button>
+<form action="diary_insert.html" method="post" enctype="image/jpeg">
+</form>
+<div class="buttons">
+<a class="button" href="diary_kalendar"><span>完了</span></a>
+<a class="button" href="#modal"><span>削除</span></a>
+</div>
+
+
+
+
+<div id="modal">
+	  <div class="message-wrapper">
+	    <a href="#" class="close"></a>
+	      <div class="message-box">
+	      <h5 class="modal-title">日記を削除しますか？</h5>
+			<button type="submit" id="modalbtn" href="#">はい</button>
+			<button type="submit" id="modalbtn" href="diary_insert">いいえ</button>
+	      </div>
+	    </div>
+	  </div>
+</div>
+
+
+<div class="modal fade" tabindex="-1" id="successMsg" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	        <h5 class="modal-title">日記を削除しました</h5>
+	      <div class="modal-body">
+			<a href="diary_kalendar">日記カレンダーに戻る</a>
+	      </div>
+	    </div>
+	  </div>
+</div>
+
 </body>
 </html>

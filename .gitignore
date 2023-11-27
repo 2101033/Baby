@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+#赤ちゃんの画像無視
+/src/main/resources/static/images/babys/

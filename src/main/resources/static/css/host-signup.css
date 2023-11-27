@@ -1,9 +1,15 @@
 @charset "UTF-8";
 
-img { 
-	width: 100vw;
-	margin-top: 25%;
-	margin-bottom: 10%;
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: #FCD5FF;
+	box-sizing: border-box;
+}
+
+img {
+	width: 30vw;
 }
 
 body {
@@ -13,8 +19,8 @@ body {
 	padding: 0;
 }
 
-.notosans {
-	font-family: 'Noto Sans JP', sans-serif;
+.logo {
+	text-align: center;
 }
 
 .container {
@@ -22,6 +28,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	margin-top: 200px;
 }
 
 .inputTxt {
@@ -42,6 +49,27 @@ body {
 	margin-bottom: 15px;
 }
 
+input[type="radio"] {
+	margin-bottom: 8px;
+}
+
+input[type="file"] {
+	display: none;
+}
+
+.fileLabel {
+	color: white;
+	background-color: #f5af09;
+	position: absolute;
+	height: 50px;
+	width: 320px;
+	margin-top: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
 .btn {
 	border: none;
 	border-radius: 30px;
@@ -51,18 +79,8 @@ body {
 	text-align: center;
 	width: 260px;
 	height: 50px;
-	margin-top: 20px;
+	margin-top: 100px;
 	margin-bottom: 5%;
-}
-
-.pass {
-	font-size: 12px;
-	color:inherit
-}
-
-.signup {
-	font-size: 12px;
-	color:inherit
 }
 
 ul {
