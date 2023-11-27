@@ -6,13 +6,6 @@
 	width: 100%;
 }
 
-header {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	background: #FCD5FF;
-	box-sizing: border-box;
-}
 
 img {
 	width: 30vw;
@@ -21,10 +14,6 @@ img {
 body {
 	background-color: #FEF1FF;
 	width: 100%;
-}
-
-.logo {
-	text-align: center;
 }
 
 .container {
