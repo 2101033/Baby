@@ -1,0 +1,28 @@
+@charset "UTF-8";
+h1
+{
+	font-weight:normal;
+	padding-top: 0%;
+	font-size: 90px;
+	text-align: center ;
+	background-color: #FFCCFF;
+	margin: 0;
+}
+.class{
+	font-size: 40px;
+	padding-left: 5%;
+	padding-top:50%;
+}
+.ko-do{
+	font-size: 40px;
+	width: 20%;
+	padding-top:0%;
+}
+.links{
+	font-size: 50px;
+	text-align: center ;
+	
+}
+body{
+	 background-color: #FFEEFF;
+}
