@@ -3,6 +3,9 @@ package com.example.demo.service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -13,8 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.entity.baby;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.demo.entity.user;
+import com.example.demo.entity.weight;
 import com.example.demo.repository.BabyRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.WeightRepository;
 
 @Service
 public class BabyServiceImpl implements BabyService {
@@ -23,6 +28,9 @@ public class BabyServiceImpl implements BabyService {
 	
 	@Autowired
 	BabyRepository babyRepository;
+	
+	@Autowired
+	WeightRepository weightRepository;
 	
 //	@Autowired
 //	private BCryptPasswordEncoder bcpe;
@@ -80,5 +88,15 @@ public class BabyServiceImpl implements BabyService {
 	public user getAuthUser(String mail, String pass) {
 		user user = userRepository.getUserByEmailAndPass(mail, DigestUtils.md5Hex(pass));
 		return user;
+	}
+
+	@Override
+	public Map<LocalDateTime, Double> getWeightByBabyId(Integer id) {
+		Iterable<weight> weights = weightRepository.getAllWeightByBabyId(id);
+		Map<LocalDateTime, Double> data = new HashMap<LocalDateTime, Double>();
+		for (weight weight : weights) {
+			data.put(weight.getWeight_date(), weight.getWeight());
+		}
+		return data;
 	}
 }
