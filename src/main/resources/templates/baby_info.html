@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>赤ちゃん情報画面</title>
+</head>
+<body>
+
+	<h2>テスト用赤ちゃん情報画面</h2>
+	
+	<div th:each="baby : ${babyList}">
+	おなまえ [[${baby.baby_name}]]<br>
+	お誕生日[[${baby.birth}]]<br>
+	性別   [[${baby.sex}]]<br>
+	プロフィール写真<br>
+	<img alt="赤ちゃんの画像が表示される" th:src="@{/images/babys/{filename}(filename=${baby.profiel_image})}" />
+	
+	</div>
+	
+	<input type="submit" name="" value="編集">
+</body>
+</html>

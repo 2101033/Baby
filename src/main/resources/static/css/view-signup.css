@@ -1,9 +1,15 @@
 @charset "UTF-8";
 
-img { 
-	width: 100vw;
-	margin-top: 25%;
-	margin-bottom: 10%;
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: #FCD5FF;
+	box-sizing: border-box;
+}
+
+img {
+	width: 30vw;
 }
 
 body {
@@ -13,8 +19,8 @@ body {
 	padding: 0;
 }
 
-.notosans {
-	font-family: 'Noto Sans JP', sans-serif;
+.logo {
+	text-align: center;
 }
 
 .container {
@@ -22,6 +28,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	margin-top: 200px;
 }
 
 .inputTxt {
@@ -30,7 +37,7 @@ body {
 	text-align: left;
 }
 
-.inputForm {
+.invCode {
 	border-radius: 10px;
 	border: 2px solid;
 	width: 310px;
@@ -39,7 +46,7 @@ body {
 	padding: 0;
 	padding-left: 3%;
 	margin-top: 3px;
-	margin-bottom: 15px;
+	margin-bottom: 50px;
 }
 
 .btn {
@@ -51,18 +58,7 @@ body {
 	text-align: center;
 	width: 260px;
 	height: 50px;
-	margin-top: 20px;
 	margin-bottom: 5%;
-}
-
-.pass {
-	font-size: 12px;
-	color:inherit
-}
-
-.signup {
-	font-size: 12px;
-	color:inherit
 }
 
 ul {

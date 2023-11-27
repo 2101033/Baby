@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+ <link th:href="@{/css/weight.css}" rel="stylesheet" type="text/css">
+    <title>体重グラフ</title>
+</head>
+<body>
+    <h1>週ごとと月ごとの体重の変化</h1>
+
+    <div>
+        <button class="button" onclick="month()" id="weeklyButton">週ごと</button>
+        <button class="button" onclick="month()" id="monthlyButton">月ごと</button>
+    </div>
+    
+    <div style="position: relative; height: 60vh; width: 100vw;">
+    <canvas id="weightChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script th:inline="javascript">
+        // グラフデータをThymeleafから受け取る
+        //var labels = /*[[${labels}]]*/ [];
+        //var data = /*[[${data}]]*/ [];
+
+        // グラフを描画するためのコード
+        var ctx = document.getElementById('weightChart').getContext('2d');
+        var weightChart = new Chart(ctx, {
+            type: 'line',
+  data: {
+    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    datasets: [{
+      label: 'Red',
+      data: [20, 35, 40, 30, 45, 35, 40],
+      borderColor: '#f88',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '体重グラフ',
+                    },
+                },
+            },
+            options: {
+			responsive:true,
+			maintainAspectRatio: false
+		},
+        });
+    </script>
+</body>
+</html>

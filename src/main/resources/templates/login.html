@@ -2,20 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link th:href="@{/css/login.css}" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
 <title>ログイン画面</title>
 </head>
 <body>
-	<div class ="textBox">
-		<span>メールアドレス</span><br>
-		<input type="text" name="mailText"><br>
-		<span >パスワード</span><br>
-		<input type="text" name="passText"><br>
-		<button type="submit" id="loginButton">ログイン</button>
+	<div class="logo">
+		<img src="/images/icon.png" />
 	</div>
-	<div class="links">
-		<a th:href="@{#}">パスワードを忘れた方はこちら</a><br>
-		<a th:href="@{#}">新規登録はこちら</a>
+	<div class="container">
+		<p th:if="${errMsg}" th:text="${errMsg}" style="color: red;"><!-- エラーメッセージ表示領域（仮） --></p>
+		<form th:action="@{index}" method="post" th:object="${loginForm}">
+		<!-- エラーメッセージ表示 -->
+			<ul th:if="${#fields.hasErrors('*')}">
+				<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
+			<div class="inputTxt">
+				<label for="email">メールアドレス</label><br>
+				<input type="email" name="mail" class="inputForm" placeholder="メールアドレス" th:field="*{email}"><br>
+				<label for="email">パスワード</label><br>
+				<input type="password" name="pass" class="inputForm" placeholder="パスワード" th:field="*{password}"><br>
+			</div>
+			<button type="submit" class="btn btn-lg my-3">ログイン</button>
+		</form>
+		<a th:href="@{/signup}" class="pass">パスワードを忘れた方はこちら</a><br>
+		<a th:href="@{/signup}" class="signup">新規登録はこちら</a>
 	</div>
 </body>
 </html>

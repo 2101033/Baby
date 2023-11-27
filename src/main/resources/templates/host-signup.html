@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link th:href="@{/css/host-signup.css}" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
+<title>新規登録（記録）</title>
+</head>
+<body>
+	<!-- ヘッダー -->
+	<header class="header">
+		<div class="logo">
+			<img src="/images/icon.png" />		
+		</div>
+	</header>
+	<!-- ここまで -->
+	<div class="container">
+		<form th:action="@{/OK}" method="post" th:object="${babyNewRegisterForm}" enctype="multipart/form-data">
+			<input type="hidden" name="mail" th:value="${mail}">
+			<input type="hidden" th:value="${password}">
+			<input type="hidden" th:value="${user_name}">
+			<input type="hidden" th:value="${recView}">
+			<!-- エラーメッセージ表示 -->
+			<ul th:if="${#fields.hasErrors('*')}">
+				<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
+			<div class="inputTxt">
+				<label for="name">おなまえ</label>
+				<input type="text" th:field="*{baby_name}" class="inputForm" placeholder="おなまえを入力してください"><br>
+				<label for="birth">生年月日</label>
+				<input type="date" th:field="*{birth}" name="birth" class="inputForm"><br>
+				<label for="sex">性別</label><br>
+				<input type="radio" th:field="*{sex}" value="男">男の子<br>
+				<input type="radio" th:field="*{sex}" value="女">女の子<br>
+				<input type="file" th:field="*{profiel_image}" id="fileImage" accept=".jpg, .jpeg, .png" />
+				<label for="fileImage" class="fileLabel">
+					写真を選択してください
+				</label>
+			</div>
+			<button type="submit" class="btn">新規登録</button>
+		</form>
+	</div>
+	
+	<script>
+		$('input[id=fileImage]').change(function(){
+			$('#photoCover').val($(this).val());
+		});
+	</script>
+</body>
+</html>
