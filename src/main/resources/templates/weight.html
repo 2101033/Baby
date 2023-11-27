@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
  <link th:href="@{/css/weight.css}" rel="stylesheet" type="text/css">
     <title>体重グラフ</title>
 </head>
@@ -12,8 +13,10 @@
         <button class="button" onclick="month()" id="weeklyButton">週ごと</button>
         <button class="button" onclick="month()" id="monthlyButton">月ごと</button>
     </div>
-
+    
+    <div style="position: relative; height: 60vh; width: 100vw;">
     <canvas id="weightChart"></canvas>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
@@ -46,6 +49,10 @@
                     },
                 },
             },
+            options: {
+			responsive:true,
+			maintainAspectRatio: false
+		},
         });
     </script>
 </body>
