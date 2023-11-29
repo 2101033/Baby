@@ -5,12 +5,16 @@ import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.baby;
+import com.example.demo.entity.invitation;
 //import com.example.demo.entity.baby;
 import com.example.demo.entity.user;
 
 public interface BabyService {
 	//ユーザー新規登録
 	public void insertUser(String mail, String pass, String user_name,Boolean user_type);
+	
+	//閲覧側新規登録_招待コード
+	public invitation viewInvitaion(String invitation_code);
 	
 	//赤ちゃん新規登録
 	public void insertBaby(String user_mail,String baby_name,String birth,String sex,MultipartFile multipartFile)throws IOException;

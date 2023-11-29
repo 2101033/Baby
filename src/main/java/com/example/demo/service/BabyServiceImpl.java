@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.baby;
+import com.example.demo.entity.invitation;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.example.demo.entity.user;
 import com.example.demo.repository.BabyRepository;
+import com.example.demo.repository.InvitationRepository;
 import com.example.demo.repository.UserRepository;
 
 @Service
@@ -23,6 +25,9 @@ public class BabyServiceImpl implements BabyService {
 	
 	@Autowired
 	BabyRepository babyRepository;
+	
+	@Autowired
+	InvitationRepository invitationRepository;
 	
 //	@Autowired
 //	private BCryptPasswordEncoder bcpe;
@@ -41,6 +46,11 @@ public class BabyServiceImpl implements BabyService {
 	    
 	    // ユーザー情報を保存する
 	    userRepository.save(user);
+	}
+	
+	@Override//閲覧側新規登録_招待コード
+	public invitation viewInvitaion(String invitation_code) {
+		return invitationRepository.invitationCheck(invitation_code);
 	}
 	
 	@Override//赤ちゃん新規登録
