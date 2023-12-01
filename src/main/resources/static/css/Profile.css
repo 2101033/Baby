@@ -1,0 +1,52 @@
+@charset "UTF-8";
+h1
+{
+	font-weight:normal;
+	padding-top: 0%;
+	font-size: 90px;
+	text-align: center ;
+	background-color: #FFCCFF;
+	margin: 0;
+}
+
+.parent-mail
+{
+	padding-top: 40%;
+	font-size: 50px;
+	  text-align: center;
+}
+
+.parent-pass
+{
+	padding-top: 10%;
+	font-size: 50px;
+	  text-align: center;
+}
+.parent-user
+{
+	padding-top: 10%;
+	font-size: 50px;
+	  text-align: center;
+}
+
+button
+{
+	padding-right: 30%;
+	padding-left: 30%;
+	font-size: 50px;
+	  text-align: center;
+	 font-weight:bold;
+	 background-color: #FFCCFF;
+	 margin-top: 50%;
+}
+
+.sikaku
+{
+	background-clip: content-box;
+background-color: white;	
+}
+
+body {
+	text-align: center;
+	 background-color: #FFEEFF;
+}

@@ -17,14 +17,15 @@
 	<!-- ここまで -->
 	<div class="container">
 		<form th:action="@{/ok}" th:object="${invNewRegisterForm}" method="post">
-			<input type="hidden" name="mail" th:value="${mail}">
-			<input type="hidden" th:value="${password}">
-			<input type="hidden" th:value="${user_name}">
-			<input type="hidden" th:value="${recView}">
+			<input type="hidden" th:field="*{mail}"      th:value="${mail}">
+			<input type="hidden" th:field="*{password}"  th:value="${password}">
+			<input type="hidden" th:field="*{user_name}" th:value="${user_name}">
+			<input type="hidden" th:field="*{recView}"   th:value="${recView}">
 			<!-- エラーメッセージ表示 -->
 			<ul th:if="${#fields.hasErrors('*')}">
 				<li th:each="err:${#fields.errors('*')}" th:text="${err}"></li>
 			</ul>
+			<p th:if="${errMsg}" th:text="${errMsg}" style="color: red;"><!-- エラーメッセージ表示（招待コードが間違っています。） --></p>
 			<div class="inputTxt">
 				<label for="invitation">招待コード</label><br>
 				<input type="text" th:field="*{code}" class="invCode" placeholder="招待コード"><br>

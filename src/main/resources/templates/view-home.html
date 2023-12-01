@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width">
 <link th:href="@{/css/view-home.css}" rel="stylesheet" type="text/css" />
 <link th:href="@{/css/header.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/css/footer.css}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <title>閲覧側ホーム</title>
 </head>
 <body>
@@ -59,6 +62,20 @@
 			</div>
 		</div>
 	</div>
+	<!-- フッター -->
+	<footer class="footer">
+		<ul>
+			<li><a href="#"><i class="fa-solid fa-house"></i><br>
+			<p>ホーム</p></a></li>
+			<li><a href="#"><i class="fa-solid fa-calendar-days"></i><br>
+			<p>カレンダー</p></a></li>
+			<li><a href="#"><i class="fa-regular fa-calendar-days"></i><br>
+			<p>成長カレンダー</p></a></li>
+			<li><a href="#"><i class="fa-solid fa-share"></i><br>
+			<p>シェア</p></a></li>
+		</ul>
+	</footer>
+	<!-- ここまで -->
 	<script>
 		const hamburger = document.querySelector('#hamburger');
 		const nav = document.querySelector('#navbar');

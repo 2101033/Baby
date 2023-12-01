@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+//import java.util.Calendar;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 //import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.baby;
+import com.example.demo.entity.invitation;
 import com.example.demo.entity.user;
 import com.example.demo.form.BabyNewRegisterForm;
 import com.example.demo.form.InvNewRegisterForm;
@@ -196,12 +198,22 @@ public class BabyController {
 	//閲覧者側登録画面（招待コード）
 	@PostMapping("/ok")
 	public String showLoginForm(@Validated InvNewRegisterForm invNewregisterForm, BindingResult bindingResult,
-								Model model, UserNewRegisterForm userNewRegisterForm) throws IOException  {
+			RedirectAttributes redirectAttributes,Model model, UserNewRegisterForm userNewRegisterForm) throws IOException  {
 		
 		if (bindingResult.hasErrors()) {
 			return "view-signup";
 		}
-
+		
+		//招待コードが合っていたら...という処理を書く
+		invitation invitation_code = service.viewInvitaion(invNewregisterForm.getCode());
+		if(invitation_code != null) {
+			service.insertUser(invNewregisterForm.getMail(),invNewregisterForm.getPassword(),
+								invNewregisterForm.getUser_name(),invNewregisterForm.getRecView());
+		}else{
+			redirectAttributes.addFlashAttribute("errMsg", "招待コードが間違っています。");
+			return "redirect:view-signup";
+		}
+		
 		// ログイン画面へ遷移。
 		return "insertOK";
 	}
@@ -246,9 +258,18 @@ public class BabyController {
 
 	@PostMapping("newRegiRecord")
 	public String newRegiRecordView(@Validated UserNewRegisterForm userNewRegisterForm,
-									BindingResult bindingResult,Model model) {
+			InvNewRegisterForm invNewRegisterForm,BindingResult bindingResult,Model model) {
 		if (bindingResult.hasErrors()) {
 			return "signup";
+		}
+		//ユーザタイプが閲覧側(1)だったら
+		if(userNewRegisterForm.getUser_type() == true) {
+			
+			model.addAttribute("mail",userNewRegisterForm.getMail());
+			model.addAttribute("password",userNewRegisterForm.getPass());
+			model.addAttribute("user_name",userNewRegisterForm.getUser_name());
+			model.addAttribute("recView",userNewRegisterForm.getUser_type());
+			return "view-signup";
 		}
 	
 		service.insertUser(
