@@ -1,18 +1,27 @@
 @charset "UTF-8";
-@charset "UTF-8";
 
-body {
+.body {
 	background-color: #FEF1FF;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 }
 
+.header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: #FCD5FF;
+	box-sizing: border-box;
+}
+
+.title{
+	text-align: center;
+}
 
 .button{
   display: inline-block;
   margin: 0 10px;
-
   position: relative;
   text-decoration: none;
   display: inline-block;

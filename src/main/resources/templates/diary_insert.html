@@ -2,43 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width", initial-scale=1.0>
 <link th:href="@{/css/diary_insert.css}" rel="stylesheet" type="text/css" />
 <title>日記記入</title>
 </head>
 <body>
-<label for="date">日付</label><br>
-<input type="date" id="date" name="日付">
-<p>日記</p>
-<input type="text" name="diarytext"><br>
-<p>画像</p>
-<form action="diary_insert.html" method="post" enctype="image/jpeg">
-</form>
-<div class="buttons">
-<a class="button" href="diary_kalendar"><span>完了</span></a>
-<a class="button" href="#modal"><span>削除</span></a>
+<header class="header">
+	<div class="title">
+		<p>日記</p>
+	</div>
+</header>
+
+<div class="container">
+	<form action="diary.html" method="post" enctype="multipart/form-data">
+		<label for="date">日付</label><br>
+		<input type="date" class="date" id="date" name="日付">
+		
+		<div class="diary_text">日記</div>
+		<input type="text" class="textbox" placeholder="今日の体調や検診の記録について書きましょう"/><br>
+		
+		<div>画像</div>
+		<input type="file" name="image" accept="image/*">
+		
+		<div class="buttons">
+			<input type="submit" class="button" href="diary_kalendar" value="完了">
+			<a class="button" href="#modal"><span>削除</span></a>
+		</div>
+	</form>
 </div>
-
-
-
 
 <div id="modal">
 	  <div class="message-wrapper">
 	    <a href="#" class="close"></a>
 	      <div class="message-box">
 	      <h5 class="modal-title">日記を削除しますか？</h5>
-			<button type="submit" id="modalbtn" href="#">はい</button>
-			<button type="submit" id="modalbtn" href="diary_insert">いいえ</button>
+			<a class="modalbtn" href="#modal2"><span>はい</span></a>
+			<a class="modalbtn" href="#diary_insert"><span>いいえ</span></a>
 	      </div>
 	    </div>
 	  </div>
 </div>
 
-
-<div class="modal fade" tabindex="-1" id="successMsg" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	        <h5 class="modal-title">日記を削除しました</h5>
-	      <div class="modal-body">
+<div id="modal2">
+	  <div class="message-wrapper">
+	    <a href="#" class="close"></a>
+	      <div class="message-box">
+	      <h5 class="modal-title">日記を削除しました</h5>
 			<a href="diary_kalendar">日記カレンダーに戻る</a>
 	      </div>
 	    </div>

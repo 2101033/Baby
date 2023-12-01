@@ -2,13 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width", initial-scale=1.0>
 <link th:href="@{/css/diary_insert.css}" rel="stylesheet" type="text/css" />
 <title>日記カレンダー</title>
+<script>
+function post_date(){
+	let date = document.getElementById('date').value;
+	localStorage.setItem('select_date', date);
+	console.log(date);
+	location.href = "/diary";
+}
+</script>
 </head>
 <body>
+<header class="header">
+	<div class="title">
+		<p>日記カレンダー</p>
+	</div>
+</header>
+
+<form>
+<p class="date">日付選択</p><br>
+<input type="date" id="date" name="日付">
 <div class="buttons">
-<a class="button" href="#"><span>記録する</span></a>
+<div class="button" onclick="post_date()"><span>記録する</span></div>
 <a class="button" href="#"><span>体重グラフ</span></a>
 </div>
+</form>
 </body>
 </html>

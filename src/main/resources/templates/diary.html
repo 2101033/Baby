@@ -2,11 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width", initial-scale=1.0>
 <link th:href="@{/css/diary.css}" rel="stylesheet" type="text/css" />
 <title>日記</title>
+<script>
+window.onload = function(){
+	let date = localStorage.getItem('select_date');
+	console.log(date);
+	let today = document.getElementById("today");
+	today.innerHTML = date;
+}
+</script>
 </head>
 <body>
+<header class="header">
+	<div class="title">
+		<p>日記</p>
+	</div>
+</header>
+<div id="today"></div>
+<div class="babyimg">
+	<img src="/images/babyimg.svg" />
+</div>
+<div class="box">
+	<p>日記の内容</p>
+</div>
 <a class="button" href="diary_insert"><span>編集</span></a>
 </body>
 </html>
