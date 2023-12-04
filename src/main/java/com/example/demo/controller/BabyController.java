@@ -299,4 +299,20 @@ public class BabyController {
 	public String diary_kalendar() {
 		return "diary_kalendar";
 	}
+	@GetMapping("home")
+	public String home() {
+		return "home";
+	}
+	@GetMapping("logout")
+	public String logout() {
+		return "logout";
+	}
+	@GetMapping("invitation")
+	public String Invitation() {
+		return "Invitation";
+	}
+	@GetMapping("reader")
+	public String reader() {
+		return "reader";
+	}
 }
