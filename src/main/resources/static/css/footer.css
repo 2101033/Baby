@@ -1,14 +1,5 @@
 @charset "UTF-8";
 
-a {
-	color: #000000;
-	text-decoration: none;
-}
-
-ul, li {
-	list-style: none;
-}
-
 .footer {
 	position: fixed;
 	bottom: 0px;
@@ -24,6 +15,7 @@ ul, li {
 	margin: 0;
 	width: 100%;
 	background-color: #FFFFFF;
+	list-style: none;
 }
 
 .footer li {
@@ -32,15 +24,17 @@ ul, li {
 	width: 25%;
 	padding: 0;
 	margin: 0;
+	list-style: none;
 }
 
 .footer li a {
-	color: #333;
 	text-align: center;
 	display: block;
 	width: 100%;
 	padding: 10px 0px 0px 0px;
 	font-size: 20px;
+	color: #000000;
+	text-decoration: none;
 }
 
 .footer li p {
