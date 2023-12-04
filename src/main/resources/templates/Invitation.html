@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <link th:href="@{/css/Invitation.css}" rel="stylesheet">
@@ -11,7 +11,7 @@
 		<span>あなたの招待コード</span><br>
 		</div>
 		<div class ="ko-do">
-		<input type="text" name="passText"><br>
+		<p name="passText"></p><br>
 		</div>
 	<div class="links">
 		<a th:href="@{#}">コードをシェアする</a>

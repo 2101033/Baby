@@ -19,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,7 +80,7 @@ public class BabyController {
 		return "signup";
 	}
 	
-	@GetMapping("testHome")
+	@GetMapping("view-home")
 	public String testHomeView(Model model) {
 		//セッションを取得
 		Object user = session.getAttribute("user");
@@ -115,7 +116,7 @@ public class BabyController {
 	        // ログインしていない場合の処理
 	        return "redirect:login";
 	    }
-		return "testHome";
+		return "view-home";
 	}
 	//日記記録画面へ
 	@GetMapping("diary_record")
@@ -236,8 +237,12 @@ public class BabyController {
 	 * @author 本藤
 	 * @return 成功した場合はindexへ遷移し、失敗した場合はloginへリダイレクトする。
 	 */
-	@PostMapping("index")
+	@RequestMapping("index")
 	public String login(@Validated LoginForm loginForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+		
+		if (session.getAttribute("user") != null) {
+			return "index";
+		}
 		
 		if (bindingResult.hasErrors()) {
 			return "login";
@@ -319,6 +324,22 @@ public class BabyController {
 	@GetMapping("diary_kalendar")
 	public String diary_kalendar() {
 		return "diary_kalendar";
+	}
+	@GetMapping("home")
+	public String home() {
+		return "home";
+	}
+	@GetMapping("logout")
+	public String logout() {
+		return "logout";
+	}
+	@GetMapping("invitation")
+	public String Invitation() {
+		return "Invitation";
+	}
+	@GetMapping("reader")
+	public String reader() {
+		return "reader";
 	}
 	
 	@GetMapping("weightInsert")

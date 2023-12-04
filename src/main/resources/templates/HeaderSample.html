@@ -9,7 +9,7 @@
 	<header class="header">
 		<div class="header__inner">
 			<div class="logo">
-				<img src="/images/icon.png" />		
+				<img src="/images/icon.png" class="header_logo" />
 			</div>
 			<!-- メニューリスト -->
 			<nav class="header__nav nav" id="navbar">
@@ -32,5 +32,15 @@
 		</div>
 	</header>
 	<!-- この上まで -->
+	<!-- これもコピー -->
+	<script>
+		const hamburger = document.querySelector('#hamburger');
+		const nav = document.querySelector('#navbar');
+		
+		hamburger.addEventListener('click', function(){
+			hamburger.classList.toggle('active');
+			navbar.classList.toggle('active');
+		});
+	</script>
 </body>
 </html>

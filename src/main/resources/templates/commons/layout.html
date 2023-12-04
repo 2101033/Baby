@@ -4,18 +4,20 @@
 <head>
 <meta charset="UTF-8">
 <link th:href="@{/css/layout.css}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <title>レイアウト画面</title>
 </head>
 <body>
 	<!-- 共通ヘッダー -->
 	<div layout:fragment="content"></div>
-	<footer>
+	<footer class="footer">
 		<nav>
 			<ul>
-				<li>ホーム</li>
-				<li>カレンダー</li>
-				<li>成長カレンダー</li>
-				<li>シェア</li>
+				<li><a th:href="@{view-home}"><i class="fa-solid fa-house"></i><br>ホーム</a></li>
+				<li><a th:href="@{calender}"><i class="fa-solid fa-calendar-days"></i><br>カレンダー</a></li>
+				<li><a th:href="@{weight}"><i class="fa-regular fa-calendar-days"></i><br>成長カレンダー</a></li>
+				<li><a th:href="@{share}"><i class="fa-solid fa-share"></i><br>シェア</a></li>
 			</ul>
 		</nav>
 	</footer>
