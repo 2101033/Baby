@@ -79,7 +79,7 @@ public class BabyController {
 		return "signup";
 	}
 	
-	@GetMapping("testHome")
+	@GetMapping("view-home")
 	public String testHomeView(Model model) {
 		//セッションを取得
 		Object user = session.getAttribute("user");
@@ -115,7 +115,7 @@ public class BabyController {
 	        // ログインしていない場合の処理
 	        return "redirect:login";
 	    }
-		return "testHome";
+		return "view-home";
 	}
 	//日記記録画面へ
 	@GetMapping("diary_record")
