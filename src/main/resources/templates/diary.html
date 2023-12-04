@@ -2,11 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width", initial-scale=1.0>
 <link th:href="@{/css/diary.css}" rel="stylesheet" type="text/css" />
 <title>日記</title>
+<script>
+window.onload = function(){
+	let date = localStorage.getItem('select_date');
+	console.log(date);
+	let today = document.getElementById("today");
+	today.innerHTML = date;
+}
+</script>
 </head>
 <body>
+<header class="header">
+		<div class="header__inner">
+			<!-- メニューリスト -->
+			<nav class="header__nav nav" id="navbar">
+				<ul class="nav__items nav-items">
+					<li class="nav-items__item"><a href="#">プロフィール</a></li>
+					<li class="nav-items__item"><a href="#">招待コード</a></li>
+					<li class="nav-items__item"><a href="#">ファミリー</a></li>
+					<li class="nav-items__item"><a href="#">赤ちゃん情報</a></li>
+					<li class="nav-items__item"><a href="#">ログアウト</a></li>
+				</ul>
+			</nav>
+			<!--名前-->
+			<p class="header_title">日記</p>
+			<!-- ハンバーガーメニュー -->
+			<button class="header__hamburger hamburger" id="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<!--  -->
+		</div>
+	</header>
+
+<div id="today"></div>
+<div class="babyimg">
+	<img src="/images/babyimg.svg" />
+</div>
+<div class="box">
+	<p>日記の内容</p>
+</div>
 <a class="button" href="diary_insert"><span>編集</span></a>
+
+<footer class="footer">
+		<ul>
+			<li><a href="#"><i class="fa-solid fa-house"></i><br>
+			<p>ホーム</p></a></li>
+			<li><a href="#"><i class="fa-solid fa-calendar-days"></i><br>
+			<p>カレンダー</p></a></li>
+			<li><a href="#"><i class="fa-regular fa-calendar-days"></i><br>
+			<p>成長カレンダー</p></a></li>
+			<li><a href="#"><i class="fa-solid fa-share"></i><br>
+			<p>シェア</p></a></li>
+		</ul>
+</footer>
 </body>
 </html>

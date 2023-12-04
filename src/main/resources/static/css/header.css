@@ -1,14 +1,5 @@
 @charset "UTF-8";
 
-a {
-	color: #000000;
-	text-decoration: none;
-}
-
-ul, li {
-	list-style: none;
-}
-
 header {
 	position: fixed;
 	top: 0;
@@ -25,7 +16,7 @@ header {
 	padding: 0;
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 	height: inherit;
 	position: relative;
 }
@@ -33,11 +24,15 @@ header {
 .logo {
 	flex: display;
 	text-align: center;
+	width: 30vw;
+	margin-left: 35%;
 }
 
-img {
+.header_logo {
 	margin-left: 50px;
 	margin-top: 8px;
+	align-items: center;
+	justify-content: center;
 }
 
 .header__nav {
@@ -58,10 +53,14 @@ img {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	padding: 0;
+	list-style: none;
+}
+
+.nav-items__item {
+	list-style: none;
 }
 
 .nav-items__item a {
-	color: #000000;
 	width: 100%;
 	display: block;
 	text-align: center;
@@ -70,6 +69,8 @@ img {
 	padding-top: 25px;
 	padding-bottom: 25px;
 	cursor: pointer;
+	color: #000000;
+	text-decoration: none;
 }
 
 .nav-items__item a:hover {
@@ -78,9 +79,9 @@ img {
 
 /* ハンバーガーメニュー */
 .header__hamburger {
-	margin-right: 20px;
 	width: 40px;
 	height: 100%;
+	margin-right: 5%;
 }
 
 .hamburger {
