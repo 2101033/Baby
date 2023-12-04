@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-a {
-	
-}
-
 header {
 	position: fixed;
 	top: 0;
@@ -20,7 +16,7 @@ header {
 	padding: 0;
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-between;
 	height: inherit;
 	position: relative;
 }
@@ -28,11 +24,15 @@ header {
 .logo {
 	flex: display;
 	text-align: center;
+	width: 30vw;
+	margin-left: 35%;
 }
 
 .header_logo {
 	margin-left: 50px;
 	margin-top: 8px;
+	align-items: center;
+	justify-content: center;
 }
 
 .header__nav {
@@ -79,9 +79,9 @@ header {
 
 /* ハンバーガーメニュー */
 .header__hamburger {
-	margin-right: 20px;
 	width: 40px;
 	height: 100%;
+	margin-right: 5%;
 }
 
 .hamburger {
