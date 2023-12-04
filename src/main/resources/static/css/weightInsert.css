@@ -40,3 +40,12 @@ input[type="text"], input[type="button"] {
     border: none;
     font-size: 16px;
 }
+
+#insertButton {
+    width: 100px;
+    height: 20px;
+    background-color: #FCD5FF;
+    color: black;
+    border: none;
+    font-size: 16px;
+}
