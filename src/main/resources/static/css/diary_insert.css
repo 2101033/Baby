@@ -67,6 +67,8 @@ header {
 
 .header_title{
 	text-align: center;
+	margin-left:120px;
+	font-size: 32px;
 }
 
 /* ハンバーガーメニュー */
