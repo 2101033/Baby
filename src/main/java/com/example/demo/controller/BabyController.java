@@ -19,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.web.bind.annotation.RequestMapping;
@@ -236,8 +237,12 @@ public class BabyController {
 	 * @author 本藤
 	 * @return 成功した場合はindexへ遷移し、失敗した場合はloginへリダイレクトする。
 	 */
-	@PostMapping("index")
+	@RequestMapping("index")
 	public String login(@Validated LoginForm loginForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+		
+		if (session.getAttribute("user") != null) {
+			return "index";
+		}
 		
 		if (bindingResult.hasErrors()) {
 			return "login";
