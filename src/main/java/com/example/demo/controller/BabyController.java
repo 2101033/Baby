@@ -320,4 +320,9 @@ public class BabyController {
 	public String diary_kalendar() {
 		return "diary_kalendar";
 	}
+	
+	@GetMapping("weightInsert")
+	public String weightInsert() {
+		return "weightInsert";
+	}
 }

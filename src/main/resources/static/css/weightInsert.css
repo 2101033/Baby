@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+body {
+    background-color: #FEF1FF;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="text"], input[type="button"] {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#weightInput {
+    width: 100px;
+    text-align: center;
+}
+
+#displayWeight {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+#imageButton {
+    width: 100px;
+    height: 100px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    font-size: 16px;
+}
