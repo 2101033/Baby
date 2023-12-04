@@ -1,19 +1,25 @@
 @charset "UTF-8";
 
 footer {
+	position: fixed;
+	bottom: 0;
 	border-top: 1px solid gray;
+	width: 100%;
 }
 
-nav>ul {
+footer>nav>ul {
 	display: flex;
 	list-style: none;
 	padding: 0;
+	margin: 0;
 	justify-content: space-around;
+	background-color: #FAFAFA;
 }
 
-nav>ul>li {
+footer>nav>ul>li {
 	width: 25%;
 	text-align: center;
+	margin: 1%;
 }
 
 .footer li a {
