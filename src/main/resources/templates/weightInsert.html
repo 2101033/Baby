@@ -38,7 +38,7 @@
 	</header>
 
 <div>
-    <label for="dateInput">日付:</label>
+    <label id="weightText" for="dateInput">日付:</label>
     <input type="text" id="dateInput" placeholder="yyyy-mm-dd"onclick="showDatePicker()">
 </div>
 
@@ -50,10 +50,10 @@
 </script>
 
 <div>
-    <label for="weightInput">体重:</label>
-    <button onclick="updateWeight('add')">＋</button>
+    <label for="weightInput">体重:</label><br>
+    <button id="weightButton" onclick="updateWeight('add')">＋</button>
     <input type="text" id="weightInput" placeholder="0 kg">
-    <button onclick="updateWeight('subtract')">ー</button>
+    <button id="weightButton" onclick="updateWeight('subtract')">ー</button>
 </div>
 
 <script>
@@ -70,6 +70,11 @@
         weightInput.value = currentWeight + ' kg';
     }
 </script>
+
+<div>
+    <input type="text" id="memo" placeholder="メモ">
+    
+</div>
 
 <div>
     <button id="imageButton">画像</button>
@@ -93,7 +98,6 @@
 			<p>シェア</p></a></li>
 		</ul>
 	</footer>
-
 
 </body>
 </html>

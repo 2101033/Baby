@@ -42,10 +42,37 @@ input[type="text"], input[type="button"] {
 }
 
 #insertButton {
-    width: 100px;
-    height: 20px;
-    background-color: #FCD5FF;
-    color: black;
-    border: none;
-    font-size: 16px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #FCD5FF;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 20px 20px; /* 左右に10pxの空白を追加 */
+  cursor: pointer;
+}
+
+#weightButton{
+	width: 30px;
+	height: 30px;
+	margin: 20px 20px;
+}
+
+#dateInput{
+	width: 100px;
+	margin:25%;
+	padding: 2%;
+	
+}
+
+#weightText{
+	color: black;
+	margin: 10px 10px;
+}
+
+#memo{
+	width: 300px;
+	height: 200px;
 }
