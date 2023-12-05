@@ -67,6 +67,8 @@ header {
 
 .header_title{
 	text-align: center;
+	margin-left:120px;
+	font-size: 32px;
 }
 
 /* ハンバーガーメニュー */
@@ -142,6 +144,11 @@ body {
 	margin-top: 20px;
 }
 
+.box{
+	padding: 20px;
+	text-align: center;
+}
+
 .textbox {
 	color: #333;
 	display: block;
@@ -161,9 +168,18 @@ body {
     font-size: 13px;
 }
 
+.date{
+	padding: 20px;
+}
+
 .upimg{
+	padding: 20px;
 	margin-top: 10px;
 	
+}
+
+.buttons{
+	text-align: center;
 }
 
 .button{

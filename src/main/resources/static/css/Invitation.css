@@ -14,11 +14,28 @@ h1
 	padding-top:50%;
 }
 .ko-do{
-	font-size: 40px;
-	width: 20%;
-	padding-top:0%;
+/*	font-size: 40px;*/
+/*	width: 20%;*/
+/*	padding-top:0%;*/
+/*position: absolute;*/
+
+ border: solid;
+ position: center;
+
+ border-radius: 165px;
+
+ border-color: #FFA990;
+
+/* margin:120px 75px;*/
+
+ width: 900px;
+
+ height: 150px;
+
+ background-color: #FFFFFF;
 }
 .links{
+	padding-top:20%;
 	font-size: 50px;
 	text-align: center ;
 	

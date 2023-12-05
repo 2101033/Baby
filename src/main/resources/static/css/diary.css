@@ -74,6 +74,8 @@ header {
 
 .header_title{
 	text-align: center;
+	margin-left:120px;
+	font-size: 32px;
 }
 
 /* ハンバーガーメニュー */
@@ -131,7 +133,13 @@ header {
 }
 
 .date{
-	margin-top: 200px;
+	padding: 20px;
+	
+}
+
+.edit{
+	padding: 20px;
+	text-align: center;
 }
 
 .button{
@@ -185,10 +193,14 @@ header {
 }
 
 .babyimg{
+	padding: 20px;
 	width: 327px;
 	height: 278px;
-	margin-top: 25%;
-	margin-bottom: 10%;
+}
+
+.diary{
+	padding:20px;
+	text-align: center;
 }
 
 .box{
@@ -197,6 +209,7 @@ header {
 	padding: 10px;
 	width: 327px;
 	height: 191px;
+	text-align: left;
 }
 
 .box p{

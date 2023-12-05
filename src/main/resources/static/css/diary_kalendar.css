@@ -74,6 +74,8 @@ header {
 
 .header_title{
 	text-align: center;
+	margin-left:120px;
+	font-size: 32px;
 }
 
 /* ハンバーガーメニュー */
@@ -130,8 +132,17 @@ header {
 	transform: rotate(-45deg);
 }
 
-.date{
+.select{
 	margin-top: 100px;
+}
+
+.date{
+	margin-left: 20px;
+}
+
+.buttons{
+	padding: 20px;
+	margin-top: 150px;
 }
 
 .button{

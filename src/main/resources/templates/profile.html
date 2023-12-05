@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+
+<link th:href="@{/css/Profile.css}" rel="stylesheet">
+
+<title>Profile</title>
+
+</head>
+
+<h1>プロフィール</h1>
+
+<div th:each="user : ${userList}" class="sikaku">
+
+<div class="parent-mail">
+
+<span>メールアドレス　　[[${user.user_mail}]]</span>
+
+</div>
+
+<div class="parent-pass">
+
+<span>パスワード　　　　○○○○○○</span>
+
+</div>
+
+<div class="parent-user">
+
+<span>ユーザー名　　　　[[${user.user_name}]] </span>
+
+</div>
+
+ <button type="submit" id="loginButton">編集</button>
+
+ </div>
+
+</body>
+
+</html>
