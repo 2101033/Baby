@@ -3,13 +3,13 @@ h1
 {
 	font-weight:normal;
 	padding-top: 0%;
-	font-size: 90px;
+	/* font-size: 90px; */
 	text-align: center ;
 	background-color: #FFCCFF;
 	margin: 0;
 }
 .class{
-	font-size: 40px;
+	/* font-size: 40px; */
 	padding-left: 5%;
 	padding-top:50%;
 }
@@ -28,9 +28,9 @@ h1
 
 /* margin:120px 75px;*/
 
- width: 900px;
+ /* width: 900px; */
 
- height: 150px;
+ /* height: 150px; */
 
  background-color: #FFFFFF;
 }
@@ -42,4 +42,15 @@ h1
 }
 body{
 	 background-color: #FFEEFF;
+}
+
+button.link-style-btn{
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #0033cc;
+}
+button.link-style-btn:hover{
+  text-decoration: underline;
+  color: #002080;
 }

@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link th:href="@{/css/Invitation.css}" rel="stylesheet">
 <title>招待コード</title>
 </head>
@@ -14,7 +15,9 @@
 		<p name="passText"></p><br>
 		</div>
 	<div class="links">
-		<a th:href="@{#}">コードをシェアする</a>
+		<!-- <a th:href="@{#}">コードをシェアする</a> -->
+		<button class="link-style-btn" onclick="shareInvCode()">コードをシェアする</button>
 	</div>
+	<script th:src="@{/scripts/share.js}"></script>
 </body>
 </html>
