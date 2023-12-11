@@ -49,6 +49,8 @@ body {
 
 .babyImage {
 	object-fit: contain;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 .detail {
