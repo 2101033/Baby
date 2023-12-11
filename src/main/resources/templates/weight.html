@@ -36,6 +36,13 @@
         <button class="button" onclick="month()" id="monthlyButton">月ごと</button>
     </div>
     
+    
+   <div>
+    <button id="weightButton" onclick="updateWeight('add')">＜</button>
+    <label for="weightInput">2023年 12月 10日</label>
+    <button id="weightButton" onclick="updateWeight('subtract')">＞</button>
+    </div>
+    
     <div style="position: relative; height: 60vh; width: 100vw;">
     <canvas id="weightChart"></canvas>
     </div>
@@ -60,6 +67,8 @@
         var ctx = document.getElementById('weightChart').getContext('2d');
         var weightChart = new Chart(ctx, {
             type: 'line',
+            
+            
   data: {
     labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
     datasets: [{
