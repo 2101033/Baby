@@ -93,7 +93,7 @@
 
                 // 現在月の日付配列
                 const days = [];
-                const lastDay = new Date(nowDate.getFullYear(), nowDate.getMonth(), 0).getDate();
+                const lastDay = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0).getDate();
                 for (let i = 1; i <= lastDay; i++) {
                     days.push(i);
                     modifedData.push(null);
@@ -146,6 +146,7 @@
                     maintainAspectRatio: false
                 },
             });
+            changeViewMode(1);
 
             // グラフデータをThymeleafから受け取る
             //var labels = /*[[${labels}]]*/ [];
