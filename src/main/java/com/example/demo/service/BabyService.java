@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +16,12 @@ import com.example.demo.entity.weight;
 public interface BabyService {
 	//ユーザー新規登録
 	public void insertUser(String mail, String pass, String user_name,Boolean user_type);
+	
+	//記入側 招待コード使われているか否か
+	public Optional<invitation> hostInvitation(Integer integer);
+	
+	//記入側 招待コード生成
+	public void createInvitation(Integer user_id, String md5Hex);
 	
 	//閲覧側新規登録_招待コード
 	public invitation viewInvitaion(String invitation_code);

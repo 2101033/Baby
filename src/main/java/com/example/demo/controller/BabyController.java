@@ -8,9 +8,11 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 //import java.util.Calendar;
 import java.util.UUID;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -333,8 +335,27 @@ public class BabyController {
 	public String logout() {
 		return "logout";
 	}
+	@SuppressWarnings("unused")
 	@GetMapping("invitation")
-	public String Invitation() {
+	public String Invitation(Model model) {
+		//セッションを取得
+		user user = (user)session.getAttribute("user");
+		Optional<invitation> invitation_user_id = service.hostInvitation(user.getUser_id());
+		Integer View_user_id = invitation_user_id.get().getView_user_id();
+		
+		//セッションがある場合
+		if (user != null) {
+	        if(invitation_user_id.isPresent() || View_user_id != null) {
+	        	String invitation_word = DigestUtils.md5Hex(UUID.randomUUID().toString());
+				service.createInvitation(user.getUser_id(),invitation_word);
+	        	model.addAttribute("invitation_word",invitation_word);
+	        }
+	    } else {
+	        // セッションが無い場合の処理
+	        return "redirect:login";
+	    }
+		//表示させたい招待コードが使われているか確認
+		
 		return "Invitation";
 	}
 	@GetMapping("reader")
@@ -345,5 +366,10 @@ public class BabyController {
 	@GetMapping("weightInsert")
 	public String weightInsert() {
 		return "weightInsert";
+	}
+	
+	@GetMapping("HeaderSample")
+	public String HeaderSampleView() {
+		return "HeaderSample";
 	}
 }

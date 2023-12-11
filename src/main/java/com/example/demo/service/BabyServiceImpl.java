@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -54,6 +55,17 @@ public class BabyServiceImpl implements BabyService {
 	    
 	    // ユーザー情報を保存する
 	    userRepository.save(user);
+	}
+	
+	
+	@Override
+	public Optional<invitation> hostInvitation(Integer user_id) {
+		return invitationRepository.invitationHost_User_Id(user_id);
+	}
+	
+	@Override
+	public void createInvitation(Integer user_id, String md5Hex) {
+		invitationRepository.save(user_id,md5Hex);
 	}
 	
 	@Override//閲覧側新規登録_招待コード
