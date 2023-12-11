@@ -24,7 +24,6 @@ body {
 	border: solid;
 	border-radius: 30px;
 	border-color: #FFA990;
-	margin:120px 75px;
 	width: 345px;
 	height: 55px;
 	background-color: #FFFFFF;
@@ -43,7 +42,7 @@ body {
 	border: none;
 	border-radius: 100%;
 	background-color: #FFFFFF;
-	margin-top: 50%;
+	margin-top: 30%;
 	justify-content: center;
 }
 
