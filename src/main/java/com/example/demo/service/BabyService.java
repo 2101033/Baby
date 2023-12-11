@@ -51,5 +51,5 @@ public interface BabyService {
 	 * @param id
 	 * @return
 	 */
-	public Map<LocalDateTime, Double> getWeightByBabyId(Integer id);
+	public Map<LocalDateTime, Double> getWeightByBabyId(Integer id, String yyyymm);
 }

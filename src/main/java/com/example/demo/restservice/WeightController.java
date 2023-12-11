@@ -19,8 +19,8 @@ public class WeightController {
 	BabyService babyService;
 	
 	@GetMapping("/get")
-	public Map<LocalDateTime, Double> getWeightByBabyId(@RequestParam(value = "babyId") Integer babyId) {
-		return babyService.getWeightByBabyId(babyId);
+	public Map<LocalDateTime, Double> getWeightByBabyId(@RequestParam(value = "babyId") Integer babyId, @RequestParam(value = "yyyymm") String yyyymm) {
+		return babyService.getWeightByBabyId(babyId, yyyymm);
 		
 	}
 }

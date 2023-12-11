@@ -118,8 +118,8 @@ public class BabyServiceImpl implements BabyService {
 	}
 
 	@Override
-	public Map<LocalDateTime, Double> getWeightByBabyId(Integer id) {
-		Iterable<weight> weights = weightRepository.getAllWeightByBabyId(id);
+	public Map<LocalDateTime, Double> getWeightByBabyId(Integer id, String yyyymm) {
+		Iterable<weight> weights = weightRepository.getAllWeightByBabyId(id, yyyymm);
 		Map<LocalDateTime, Double> data = new HashMap<LocalDateTime, Double>();
 		for (weight weight : weights) {
 			data.put(weight.getWeight_date(), weight.getWeight());

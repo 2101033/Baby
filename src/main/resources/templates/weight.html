@@ -1,102 +1,190 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{commons/layout}">
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-<meta name="viewport" content="width=device-width">
- <link th:href="@{/css/weight.css}" rel="stylesheet" type="text/css">
- <!-- <link th:href="@{/css/footer.css}" rel="stylesheet" type="text/css" /> -->
- <link th:href="@{/css/header.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width">
+    <link th:href="@{/css/weight.css}" rel="stylesheet" type="text/css">
+    <!-- <link th:href="@{/css/footer.css}" rel="stylesheet" type="text/css" /> -->
+    <link th:href="@{/css/header.css}" rel="stylesheet" type="text/css" />
     <title>体重グラフ</title>
 </head>
+
 <body>
-<div layout:fragment="content">
-	<header class="header">
-		<div class="header__inner">
-			<div class="logo">
-				<img src="/images/icon.png" />		
-			</div>
-			<!-- メニューリスト -->
-			<nav class="header__nav nav" id="navbar">
-				<ul class="nav__items nav-items">
-					<li class="nav-items__item"><a href="#">プロフィール</a></li>
-					<li class="nav-items__item"><a href="#">招待コード</a></li>
-					<li class="nav-items__item"><a href="#">ファミリー</a></li>
-					<li class="nav-items__item"><a href="#">赤ちゃん情報</a></li>
-					<li class="nav-items__item"><a href="#">ログアウト</a></li>
-				</ul>
-			</nav>
-	</header>
-    <h1>週ごとと月ごとの体重の変化</h1>
+    <div layout:fragment="content">
+        <header class="header">
+            <div class="header__inner">
+                <div class="logo">
+                    <img src="/images/icon.png" />
+                </div>
+                <!-- メニューリスト -->
+                <nav class="header__nav nav" id="navbar">
+                    <ul class="nav__items nav-items">
+                        <li class="nav-items__item"><a href="#">プロフィール</a></li>
+                        <li class="nav-items__item"><a href="#">招待コード</a></li>
+                        <li class="nav-items__item"><a href="#">ファミリー</a></li>
+                        <li class="nav-items__item"><a href="#">赤ちゃん情報</a></li>
+                        <li class="nav-items__item"><a href="#">ログアウト</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <h1>週ごとと月ごとの体重の変化</h1>
 
-    <div>
-        <button class="button" onclick="month()" id="weeklyButton">週ごと</button>
-        <button class="button" onclick="month()" id="monthlyButton">月ごと</button>
-    </div>
-    
-    
-   <div>
-    <button id="weightButton" onclick="updateWeight('add')">＜</button>
-    <label for="weightInput">2023年 12月 10日</label>
-    <button id="weightButton" onclick="updateWeight('subtract')">＞</button>
-    </div>
-    
-    <div style="position: relative; height: 60vh; width: 100vw;">
-    <canvas id="weightChart"></canvas>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <script th:inline="javascript">
+        <div>
+            <!-- <button class="button" onclick="month()" id="weeklyButton">週ごと</button> -->
+            <button class="button" onclick="changeViewMode(1)" id="monthlyButton">月ごと</button>
+        </div>
 
 
-        // 体重データ非同期取得
-        async function getdata() {
-        const weightDataRes = await fetch("/weight/get?babyId=1", {method: "GET"});
-        console.log(await weightDataRes.json());
-        }
-        getdata();
+        <div>
+            <button id="weightButton" onclick="beforeMonth()">＜</button>
+            <label for="weightInput" id="viewMonth" th:text="${nowMonth}"></label>
+            <button id="weightButton" onclick="afterMonth()">＞</button>
+        </div>
 
-        // グラフデータをThymeleafから受け取る
-        //var labels = /*[[${labels}]]*/ [];
-        //var data = /*[[${data}]]*/ [];
+        <div style="position: relative; height: 60vh; width: 100vw;">
+            <canvas id="weightChart"></canvas>
+        </div>
 
-        // グラフを描画するためのコード
-        var ctx = document.getElementById('weightChart').getContext('2d');
-        var weightChart = new Chart(ctx, {
-            type: 'line',
-            
-            
-  data: {
-    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    datasets: [{
-      label: '月の体重',
-      data: [20, 35, 40, 30, 45, 35, 40],
-      borderColor: '#f88',
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: '体重グラフ',
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script th:inline="javascript">
+
+            const nowDate = new Date();
+
+            const datetimeLabel = document.getElementById('viewMonth');
+
+            // 体重データ非同期取得
+            async function getdata(id, yyyymm) {
+                const weightDataRes = await fetch(`/weight/get?babyId=${id}&yyyymm=${yyyymm}`, { method: "GET" });
+                // console.log(await weightDataRes.json());
+                return await weightDataRes.json();
+            }
+            // getdata();
+
+            function beforeMonth() {
+                nowDate.setMonth(nowDate.getMonth() - 1);
+                datetimeLabel.innerHTML = `${nowDate.getFullYear()}年${nowDate.getMonth() + 1}月`;
+                changeViewMode(1);
+            }
+
+            function afterMonth() {
+                nowDate.setMonth(nowDate.getMonth() + 1);
+                datetimeLabel.innerHTML = `${nowDate.getFullYear()}年${nowDate.getMonth() + 1}月`;
+                changeViewMode(1);
+            }
+
+            async function changeViewMode(type) {
+
+                const data = await getdata(1, `${nowDate.getFullYear()}${nowDate.getMonth() + 1}`);
+
+                console.log(data);
+
+                // dataの数値だけを取得して配列にする
+                const modifedDataKeys = Object.keys(data);
+                const modifedDataValues = Object.values(data);
+                const modifedData = [];
+
+                // 現在月の日付配列
+                const days = [];
+                const lastDay = new Date(nowDate.getFullYear(), nowDate.getMonth(), 0).getDate();
+                for (let i = 1; i <= lastDay; i++) {
+                    days.push(i);
+                    modifedData.push(null);
+                }
+
+                for (let i = 0; i < modifedDataKeys.length; i++) {
+                    modifedData[new Date(modifedDataKeys[i]).getDate() - 1] = modifedDataValues[i];
+                }
+                console.log(modifedData);
+                console.log(days);
+                if (type === 0) {
+
+                } else if (type === 1) {
+                    // 月ごとの体重グラフを表示
+
+                    weightChart.data.labels = days;
+                    weightChart.data.datasets[0].data = modifedData;
+                    weightChart.update();
+
+                    console.log(weightChart);
+                }
+            }
+
+            var ctx = document.getElementById('weightChart').getContext('2d');
+            var weightChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                    datasets: [{
+                        label: '月の体重',
+                        data: [20, 35, 40, 30, 45, 35, 40],
+                        borderColor: '#f88',
+                        spanGaps: true,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: '体重グラフ',
+                        },
                     },
                 },
-            },
-            options: {
-			responsive:true,
-			maintainAspectRatio: false
-		},
-        });
-    </script>
-    
-    		<!-- <footer class="footer">
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                },
+            });
+
+            // グラフデータをThymeleafから受け取る
+            //var labels = /*[[${labels}]]*/ [];
+            //var data = /*[[${data}]]*/ [];
+
+            // グラフを描画するためのコード
+            // var ctx = document.getElementById('weightChart').getContext('2d');
+            // var weightChart = new Chart(ctx, {
+            //     type: 'line',
+
+
+            //     data: {
+            //         labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            //         datasets: [{
+            //             label: '月の体重',
+            //             data: [20, 35, 40, 30, 45, 35, 40],
+            //             borderColor: '#f88',
+            //         }]
+            //     },
+            //     options: {
+            //         responsive: true,
+            //         plugins: {
+            //             legend: {
+            //                 position: 'top',
+            //             },
+            //             title: {
+            //                 display: true,
+            //                 text: '体重グラフ',
+            //             },
+            //         },
+            //     },
+            //     options: {
+            //         responsive: true,
+            //         maintainAspectRatio: false
+            //     },
+            // });
+        </script>
+
+        <!-- <footer class="footer">
 		<ul>
 			<li><a href="#"><i class="fa-solid fa-house"></i><br>
 			<p>ホーム</p></a></li>
@@ -108,6 +196,7 @@
 			<p>シェア</p></a></li>
 		</ul>
 	</footer> -->
-	</div>
+    </div>
 </body>
+
 </html>
