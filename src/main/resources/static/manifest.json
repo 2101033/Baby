@@ -1,0 +1,10 @@
+{
+  "name": "ベビーアルバムプラス",
+  "short_name": "ベビーアルバム＋",
+  "theme_color": "#e9b8f5",
+  "background_color": "#eaa2eb",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/"
+}
