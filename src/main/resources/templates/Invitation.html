@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{commons/layout}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,6 +8,7 @@
 <title>招待コード</title>
 </head>
 <body>
+<div layout:fragment="content">
 <h1>招待</h1>
 <div class ="class">
 		<span>あなたの招待コード</span><br>
@@ -19,5 +21,6 @@
 		<button class="link-style-btn" onclick="shareInvCode()">コードをシェアする</button>
 	</div>
 	<script th:src="@{/scripts/share.js}"></script>
+	</div>
 </body>
 </html>
