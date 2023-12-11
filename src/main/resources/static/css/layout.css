@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+* {
+	padding: 0;
+	margin: 0;
+}
+
+div.main-content {
+	padding-top: 20%;
+	padding-bottom: 20%;
+}
+
 footer {
 	position: fixed;
 	bottom: 0;
