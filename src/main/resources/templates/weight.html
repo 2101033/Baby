@@ -37,8 +37,8 @@
         <h1>週ごとと月ごとの体重の変化</h1>
 
         <div>
-            <!-- <button class="button" onclick="month()" id="weeklyButton">週ごと</button> -->
-            <button class="button" onclick="changeViewMode(1)" id="monthlyButton">月ごと</button>
+            <!-- <button class="button" onclick="changeViewMode(0)" id="weeklyButton">週ごと</button>
+            <button class="button" onclick="changeViewMode(1)" id="monthlyButton">月ごと</button> -->
         </div>
 
 
@@ -61,8 +61,14 @@
             const datetimeLabel = document.getElementById('viewMonth');
 
             // 体重データ非同期取得
-            async function getdata(id, yyyymm) {
-                const weightDataRes = await fetch(`/weight/get?babyId=${id}&yyyymm=${yyyymm}`, { method: "GET" });
+            async function getdata(id, val, type) {
+                let weightDataRes = null;
+                if (type === 0) {
+                    weightDataRes = await fetch(`/weight/get/week?babyId=${id}&yyyymmdd=${val}`, { method: "GET" });
+                } else {
+                    weightDataRes = await fetch(`/weight/get/month?babyId=${id}&yyyymm=${val}`, { method: "GET" });
+                }
+
                 // console.log(await weightDataRes.json());
                 return await weightDataRes.json();
             }
@@ -82,38 +88,67 @@
 
             async function changeViewMode(type) {
 
-                const data = await getdata(1, `${nowDate.getFullYear()}${nowDate.getMonth() + 1}`);
 
-                console.log(data);
-
-                // dataの数値だけを取得して配列にする
-                const modifedDataKeys = Object.keys(data);
-                const modifedDataValues = Object.values(data);
-                const modifedData = [];
-
-                // 現在月の日付配列
-                const days = [];
-                const lastDay = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0).getDate();
-                for (let i = 1; i <= lastDay; i++) {
-                    days.push(i);
-                    modifedData.push(null);
-                }
-
-                for (let i = 0; i < modifedDataKeys.length; i++) {
-                    modifedData[new Date(modifedDataKeys[i]).getDate() - 1] = modifedDataValues[i];
-                }
-                console.log(modifedData);
-                console.log(days);
                 if (type === 0) {
+                    const data = await getdata(1, `${nowDate.getFullYear()}${nowDate.getMonth() + 1}${nowDate.getDate()}`, type);
 
-                } else if (type === 1) {
+                    console.log(data);
+
+                    // dataの数値だけを取得して配列にする
+                    const modifedDataKeys = Object.keys(data);
+                    const modifedDataValues = Object.values(data);
+                    const modifedData = [];
+
+                    // 現在週の日付配列
+                    const days = [];
+                    for (let i = 1; i <= 7; i++) {
+                        days.push(nowDate.getDate() - nowDate.getDay() + i);
+                        modifedData.push(null);
+                    }
+
+                    for (let i = 0; i < modifedDataKeys.length; i++) {
+                        modifedData[new Date(modifedDataKeys[i]).getDay() - 1] = modifedDataValues[i];
+                    }
+
+                    console.log(modifedData);
+                    console.log(days);
                     // 月ごとの体重グラフを表示
 
                     weightChart.data.labels = days;
                     weightChart.data.datasets[0].data = modifedData;
+                    weightChart.data.datasets[0].label = "週の体重"
                     weightChart.update();
 
-                    console.log(weightChart);
+                } else if (type === 1) {
+                    const data = await getdata(1, `${nowDate.getFullYear()}${nowDate.getMonth() + 1}`, type);
+
+                    console.log(data);
+
+                    // dataの数値だけを取得して配列にする
+                    const modifedDataKeys = Object.keys(data);
+                    const modifedDataValues = Object.values(data);
+                    const modifedData = [];
+
+                    // 現在月の日付配列
+                    const days = [];
+                    const lastDay = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0).getDate();
+                    for (let i = 1; i <= lastDay; i++) {
+                        days.push(i);
+                        modifedData.push(null);
+                    }
+
+                    for (let i = 0; i < modifedDataKeys.length; i++) {
+                        modifedData[new Date(modifedDataKeys[i]).getDate() - 1] = modifedDataValues[i];
+                    }
+                    console.log(modifedData);
+                    console.log(days);
+                    // 月ごとの体重グラフを表示
+
+                    weightChart.data.labels = days;
+                    weightChart.data.datasets[0].data = modifedData;
+                    weightChart.data.datasets[0].label = "月の体重"
+                    weightChart.update();
+
                 }
             }
 

@@ -18,9 +18,15 @@ public class WeightController {
 	@Autowired
 	BabyService babyService;
 	
-	@GetMapping("/get")
-	public Map<LocalDateTime, Double> getWeightByBabyId(@RequestParam(value = "babyId") Integer babyId, @RequestParam(value = "yyyymm") String yyyymm) {
-		return babyService.getWeightByBabyId(babyId, yyyymm);
+	@GetMapping("/get/month")
+	public Map<LocalDateTime, Double> getMonthlyWeightByBabyId(@RequestParam(value = "babyId") Integer babyId, @RequestParam(value = "yyyymm") String yyyymm) {
+		return babyService.getMonthlyWeightByBabyId(babyId, yyyymm);
+		
+	}
+	
+	@GetMapping("/get/week")
+	public Map<LocalDateTime, Double> getWeeklyWeightByBabyId(@RequestParam(value = "babyId") Integer babyId, @RequestParam(value = "yyyymmdd") String yyyymmdd) {
+		return babyService.getWeeklyWeightByBabyId(babyId, yyyymmdd);
 		
 	}
 }

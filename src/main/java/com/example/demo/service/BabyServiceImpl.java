@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -65,7 +66,7 @@ public class BabyServiceImpl implements BabyService {
 	
 	@Override
 	public void createInvitation(Integer user_id, String md5Hex) {
-		invitationRepository.save(user_id,md5Hex);
+//		invitationRepository.saveInv(user_id,md5Hex);
 	}
 	
 	@Override//閲覧側新規登録_招待コード
@@ -118,9 +119,20 @@ public class BabyServiceImpl implements BabyService {
 	}
 
 	@Override
-	public Map<LocalDateTime, Double> getWeightByBabyId(Integer id, String yyyymm) {
-		Iterable<weight> weights = weightRepository.getAllWeightByBabyId(id, yyyymm);
-		Map<LocalDateTime, Double> data = new HashMap<LocalDateTime, Double>();
+	public Map<LocalDateTime, Double> getMonthlyWeightByBabyId(Integer id, String yyyymm) {
+		Iterable<weight> weights = weightRepository.getAllMonthlyWeightByBabyId(id, yyyymm);
+		Map<LocalDateTime, Double> data = new LinkedHashMap<LocalDateTime, Double>();
+		for (weight weight : weights) {
+			data.put(weight.getWeight_date(), weight.getWeight());
+		}
+		return data;
+	}
+
+
+	@Override
+	public Map<LocalDateTime, Double> getWeeklyWeightByBabyId(Integer id, String yyyymmdd) {
+		Iterable<weight> weights = weightRepository.getAllWeeklyWeightByBabyId(id, yyyymmdd);
+		Map<LocalDateTime, Double> data = new LinkedHashMap<LocalDateTime, Double>();
 		for (weight weight : weights) {
 			data.put(weight.getWeight_date(), weight.getWeight());
 		}
