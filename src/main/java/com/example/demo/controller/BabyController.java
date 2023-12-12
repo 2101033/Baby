@@ -336,19 +336,21 @@ public class BabyController {
 	public String logout() {
 		return "logout";
 	}
-	@SuppressWarnings("unused")
+
 	@GetMapping("invitation")
 	public String Invitation(Model model) {
 		//セッションを取得
-		user user = (user)session.getAttribute("user");
-		Optional<invitation> invitation_user_id = service.hostInvitation(user.getUser_id());
-		Integer View_user_id = invitation_user_id.get().getView_user_id();
+		Object user = session.getAttribute("user");
 		
 		//セッションがある場合
 		if (user != null) {
+			
+			Optional<invitation> invitation_user_id = service.hostInvitation(((user)user).getUser_id());
+			Integer View_user_id = invitation_user_id.get().getView_user_id();
+			
 	        if(invitation_user_id.isPresent() || View_user_id != null) {
 	        	String invitation_word = DigestUtils.md5Hex(UUID.randomUUID().toString());
-				service.createInvitation(user.getUser_id(),invitation_word);
+				service.createInvitation(((user) user).getUser_id(),invitation_word);
 	        	model.addAttribute("invitation_word",invitation_word);
 	        }
 	    } else {
