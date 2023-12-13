@@ -11,6 +11,31 @@
 </head>
 <body>
 	<!-- 共通ヘッダー -->
+	<header class="header">
+		<div class="header__inner">
+			<div class="logo">
+				<img src="/images/icon.png" />
+			</div>
+			<!-- メニューリスト -->
+			<nav class="header__nav nav" id="navbar">
+				<ul class="nav__items nav-items">
+					<li class="nav-items__item"><a href="#">プロフィール</a></li>
+					<li class="nav-items__item"><a th:href="@{/invitation}">招待コード</a></li>
+					<li class="nav-items__item"><a href="#">ファミリー</a></li>
+					<li class="nav-items__item"><a href="#">赤ちゃん情報</a></li>
+					<li class="nav-items__item"><a href="#">ログアウト</a></li>
+				</ul>
+			</nav>
+			<!--  -->
+			<!-- ハンバーガーメニュー -->
+			<button class="header__hamburger hamburger" id="hamburger">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<!--  -->
+		</div>
+	</header>
 	<div class="main-content" layout:fragment="content"></div>
 	<footer class="footer">
 		<nav>
@@ -22,5 +47,14 @@
 			</ul>
 		</nav>
 	</footer>
+	<script>
+		const hamburger = document.querySelector('#hamburger');
+		const nav = document.querySelector('#navbar');
+		
+		hamburger.addEventListener('click', function(){
+			hamburger.classList.toggle('active');
+			navbar.classList.toggle('active');
+		});
+	</script>
 </body>
 </html>

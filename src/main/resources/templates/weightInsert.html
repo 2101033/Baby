@@ -1,106 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{commons/layout}">
+	layout:decorate="~{commons/layout}">
+
 <head>
-    <meta charset="UTF-8">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/weightInsert.css}" rel="stylesheet" type="text/css">
-    <!-- <link th:href="@{/css/footer.css}" rel="stylesheet" type="text/css" /> -->
-    <link th:href="@{/css/header.css}" rel="stylesheet" type="text/css" />
-    <title>Date Input Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link th:href="@{/css/weightInsert.css}" rel="stylesheet" type="text/css">
+	<!-- <link th:href="@{/css/footer.css}" rel="stylesheet" type="text/css" /> -->
+	<!-- <link th:href="@{/css/header.css}" rel="stylesheet" type="text/css" /> -->
+	<title>Date Input Example</title>
 </head>
+
 <body>
-<div layout:fragment="content">
-		<header class="header">
-		<div class="header__inner">
-			<div class="logo">
-				<img src="/images/icon.png" />		
+	<div layout:fragment="content">
+
+		<form th:action="@{weightIns}" method="post">
+
+			<div>
+				<label id="weightText" for="dateInput">日付:</label>
+				<!-- <input type="text" id="dateInput" placeholder="yyyy-mm-dd" onclick="showDatePicker()"> -->
+				<input type="date" id="dateInput" name="dateInput">
 			</div>
-			<!-- メニューリスト -->
-			<nav class="header__nav nav" id="navbar">
-				<ul class="nav__items nav-items">
-					<li class="nav-items__item"><a href="#">プロフィール</a></li>
-					<li class="nav-items__item"><a href="#">招待コード</a></li>
-					<li class="nav-items__item"><a href="#">ファミリー</a></li>
-					<li class="nav-items__item"><a href="#">赤ちゃん情報</a></li>
-					<li class="nav-items__item"><a href="#">ログアウト</a></li>
-				</ul>
-			</nav>
-			<!--  -->
-			<!-- ハンバーガーメニュー -->
-			<button class="header__hamburger hamburger" id="hamburger">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
-			<!--  -->
-		</div>
-	</header>
 
-<div>
-    <label id="weightText" for="dateInput">日付:</label>
-    <input type="text" id="dateInput" placeholder="yyyy-mm-dd"onclick="showDatePicker()">
-</div>
+			<div>
+				<label for="weightInput">体重:</label><br>
+				<button type="button" id="weightButton" onclick="updateWeight('add')">＋</button>
+				<input type="text" id="weightInput" placeholder="3.00">Kg
+				<button type="button" id="weightButton" onclick="updateWeight('subtract')">ー</button>
+			</div>
 
-<script>
-    function showDatePicker() {
-        var dateInput = document.getElementById('dateInput');
-        dateInput.type = 'date';
-    }
-</script>
+			<div>
+				<input type="text" id="memo" placeholder="メモ">
 
-<div>
-    <label for="weightInput">体重:</label><br>
-    <button id="weightButton" onclick="updateWeight('add')">＋</button>
-    <input type="text" id="weightInput" placeholder="0 kg">
-    <button id="weightButton" onclick="updateWeight('subtract')">ー</button>
-</div>
+			</div>
 
-<script>
-    function updateWeight(operation) {
-        var weightInput = document.getElementById('weightInput');
-        var currentWeight = parseFloat(weightInput.value) || 0;
+			<!-- <div>
+				<input type="file" id="imageButton">画像</input>
 
-        if (operation === 'add') {
-            currentWeight += 1;
-        } else if (operation === 'subtract') {
-            currentWeight -= 1;
-        }
+			</div> -->
 
-        weightInput.value = currentWeight + ' kg';
-    }
-</script>
+			<div>
+				<button type="submit" id="insertButton">登録</button>
 
-<div>
-    <input type="text" id="memo" placeholder="メモ">
-    
-</div>
+			</div>
+		</form>
 
-<div>
-    <button id="imageButton">画像</button>
-    
-</div>
+		<script>
+			// function showDatePicker() {
+			// 	var dateInput = document.getElementById('dateInput');
+			// 	dateInput.type = 'date';
+			// }
 
-<div>
-    <button id="insertButton">登録</button>
-    
-</div>
+			function updateWeight(operation) {
+				var weightInput = document.getElementById('weightInput');
+				var currentWeight = parseFloat(weightInput.value) || 0;
 
-		<!-- <footer class="footer">
-		<ul>
-			<li><a href="#"><i class="fa-solid fa-house"></i><br>
-			<p>ホーム</p></a></li>
-			<li><a href="#"><i class="fa-solid fa-calendar-days"></i><br>
-			<p>カレンダー</p></a></li>
-			<li><a href="#"><i class="fa-regular fa-calendar-days"></i><br>
-			<p>成長カレンダー</p></a></li>
-			<li><a href="#"><i class="fa-solid fa-share"></i><br>
-			<p>シェア</p></a></li>
-		</ul>
-	</footer> -->
+				if (operation === 'add') {
+					currentWeight += 1;
+				} else if (operation === 'subtract') {
+					currentWeight -= 1;
+				}
 
-</div>
+				if (currentWeight < 0) {
+					currentWeight = 0;
+				} else if (currentWeight > 100) {
+					currentWeight = 100;
+				}
+
+				weightInput.value = currentWeight.toFixed(2);
+			}
+		</script>
+
+	</div>
+
 </body>
+
 </html>

@@ -52,6 +52,7 @@ input[type="text"], input[type="button"] {
   font-size: 16px;
   margin: 20px 20px; /* 左右に10pxの空白を追加 */
   cursor: pointer;
+  width: auto;
 }
 
 #weightButton{

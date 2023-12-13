@@ -291,7 +291,8 @@ public class BabyController {
   }
   
 	@GetMapping("weight")
-	public String weightView() {
+	public String weightView(Model model) {
+		model.addAttribute("nowMonth", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy年MM月")));
 		return "weight";
 	}
 	
