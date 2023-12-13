@@ -332,11 +332,8 @@ public class BabyController {
 	public String home() {
 		return "home";
 	}
-	@GetMapping("logout")
-	public String logout() {
-		return "logout";
-	}
 	
+
 	@GetMapping("invitation")
 	public String Invitation(Model model, RedirectAttributes redirectAttributes) {
 	    //セッションを取得
@@ -382,5 +379,16 @@ public class BabyController {
 	@GetMapping("HeaderSample")
 	public String HeaderSampleView() {
 		return "HeaderSample";
+	}
+	
+	@PostMapping("weightIns")
+	public String weightInsSubmit() {
+		return "redirect:weight";
+	}
+	
+	@RequestMapping("logout")
+	public String logoutView() {
+		session.removeAttribute("user");
+		return "logout";
 	}
 }
