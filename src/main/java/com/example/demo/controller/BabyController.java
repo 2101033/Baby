@@ -335,29 +335,39 @@ public class BabyController {
 	public String logout() {
 		return "logout";
 	}
-	@SuppressWarnings("unused")
+	
 	@GetMapping("invitation")
-	public String Invitation(Model model) {
-		//セッションを取得
-		user user = (user)session.getAttribute("user");
-		Optional<invitation> invitation_user_id = service.hostInvitation(user.getUser_id());
-		Integer View_user_id = invitation_user_id.get().getView_user_id();
-		
-		//セッションがある場合
-		if (user != null) {
-	        if(invitation_user_id.isPresent() || View_user_id != null) {
-	        	String invitation_word = DigestUtils.md5Hex(UUID.randomUUID().toString());
-				service.createInvitation(user.getUser_id(),invitation_word);
-	        	model.addAttribute("invitation_word",invitation_word);
-	        }
+	public String Invitation(Model model, RedirectAttributes redirectAttributes) {
+	    //セッションを取得
+	    user user = (user) session.getAttribute("user");
+
+	  //セッションがある場合
+	    if (user != null) {
+	        Optional<invitation> invitation_user_id = service.hostInvitation(user.getUser_id());
+
+	        //記録側のユーザIDが空 or 閲覧側ユーザIDが入っていたら
+	        if (invitation_user_id.isPresent()) {
+	            Integer View_user_id = invitation_user_id.get().getView_user_id();
+
+			            if (View_user_id != null) {
+			                String invitation_word = DigestUtils.md5Hex(UUID.randomUUID().toString());
+			                service.createInvitation(user.getUser_id(), invitation_word);
+			                model.addAttribute("invitation_word", invitation_word);
+			                return "Invitation";  // ここで処理を終了して招待コードを表示する
+			            }
+					        } else {
+					        	String invitation_word = DigestUtils.md5Hex(UUID.randomUUID().toString());
+				                service.createInvitation(user.getUser_id(), invitation_word);
+				                model.addAttribute("invitation_word", invitation_word);
+					        	}
 	    } else {
-	        // セッションが無い場合の処理
 	        return "redirect:login";
 	    }
-		//表示させたい招待コードが使われているか確認
-		
-		return "Invitation";
+	    // Invitationが表示されない場合は、最後の行の "Invitation" を返す
+	    return "Invitation";
+
 	}
+
 	@GetMapping("reader")
 	public String reader() {
 		return "reader";

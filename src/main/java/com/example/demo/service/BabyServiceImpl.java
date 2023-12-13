@@ -65,7 +65,7 @@ public class BabyServiceImpl implements BabyService {
 	
 	@Override
 	public void createInvitation(Integer user_id, String md5Hex) {
-		invitationRepository.save(user_id,md5Hex);
+		invitationRepository.save(new invitation(null, md5Hex, user_id, null));
 	}
 	
 	@Override//閲覧側新規登録_招待コード
