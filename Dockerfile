@@ -1,20 +1,23 @@
-# Use the official Gradle image as a base image
-FROM gradle:6.8-jdk11 AS build
+# ベースイメージの指定
+FROM gradle:7.3.3-jdk17 AS build
 
-# Set the working directory in the container
+# 作業ディレクトリの指定
+WORKDIR /usr/src/app
+
+# プロジェクトのビルド
+COPY . .
+RUN gradle clean build -x test
+
+# 二段階ビルドのため、必要なファイルだけを取り出す
+FROM adoptopenjdk:17-jre-hotspot-alpine3.14
+
 WORKDIR /app
 
-# Copy the project files to the working directory
-COPY build.gradle .
-COPY src ./src
+# 一つ目のビルドステージから必要なファイルをコピー
+COPY --from=build /usr/src/app/build/libs/*.jar app.jar
 
-# Build the application
-RUN gradle build
+# ポートのエクスポージャ
+EXPOSE 8080
 
-# Create a lightweight image with only the JRE and the built application
-FROM openjdk:11-jre-slim
-WORKDIR /app
-COPY --from=build /app/build/libs/Baby-0.0.1-SNAPSHOT.jar ./app.jar
-
-# Specify the command to run on container startup
-CMD ["java", "-jar", "app.jar"]
+# アプリケーションのエントリーポイント
+ENTRYPOINT ["java", "-jar", "app.jar"]
