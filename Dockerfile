@@ -14,7 +14,7 @@ RUN gradle build
 # Create a lightweight image with only the JRE and the built application
 FROM openjdk:11-jre-slim
 WORKDIR /app
-COPY --from=build /app/build/libs/my-app.jar ./app.jar
+COPY --from=build /app/build/libs/Baby-0.0.1-SNAPSHOT.jar ./app.jar
 
 # Specify the command to run on container startup
 CMD ["java", "-jar", "app.jar"]
